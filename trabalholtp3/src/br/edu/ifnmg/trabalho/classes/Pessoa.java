@@ -51,7 +51,11 @@ public class Pessoa {
     }
 
     public void setNome(String Nome) {
-        this.Nome = Nome;
+        if((Nome.length()<3) || (Nome.length()>255)){
+            System.out.print("O Nome é Inválido!");
+        }else{
+            this.Nome = Nome;
+        }
     }
 
     public int getRg() {
