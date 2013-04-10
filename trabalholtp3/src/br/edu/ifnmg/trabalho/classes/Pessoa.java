@@ -75,7 +75,13 @@ public class Pessoa {
     }
 
     public void setData(Date Data) {
-        this.Data = Data;
+        Date Datalimite = new Date(1900,01,01);
+        
+        if(Data.before(Datalimite)){
+            System.out.print("Essa data é inválida!");
+        }else{
+            this.Data = Data;
+        }
     }
 
     public List<Endereco> getEnderecos() {
