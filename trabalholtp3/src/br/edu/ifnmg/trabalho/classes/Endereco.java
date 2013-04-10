@@ -19,6 +19,7 @@ public class Endereco {
         Rua = "vazio";
         Num = 0;
         Bairro = "vazio";
+        
     
     }
   
