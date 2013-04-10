@@ -15,6 +15,10 @@ public class Endereco {
     private String Bairro;
     
     public Endereco(){
+        Id = 0;
+        Rua = "vazio";
+        Num = 0;
+        Bairro = "vazio";
     
     }
   
