@@ -19,6 +19,11 @@ public class Telefone {
         Num = 0;
     }
     
+    //Metodo Principal
+    public static void main(String args[]){
+    
+    }
+    
     //----
 
     public int getId() {
