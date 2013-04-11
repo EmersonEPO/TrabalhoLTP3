@@ -36,6 +36,11 @@ public class Pessoa {
         Telefones = new LinkedList<Telefone>();
     }
  
+    //Metodo Principal
+    public static void main(String args[]){
+    
+    }
+    
     //----
 
     public int getId() {
