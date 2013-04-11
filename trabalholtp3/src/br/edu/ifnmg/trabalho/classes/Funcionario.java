@@ -19,8 +19,8 @@ public class Funcionario extends Pessoa{
     
     public Funcionario(){
         Id = 0;
-        Usuario = "vazio";
-        Senha = "vazio";
+        Usuario = "";
+        Senha = "";
     }
     
     //----
@@ -38,7 +38,7 @@ public class Funcionario extends Pessoa{
     }
 
     public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+        this.Usuario = Usuario;  
     }
 
     public String getSenha() {
