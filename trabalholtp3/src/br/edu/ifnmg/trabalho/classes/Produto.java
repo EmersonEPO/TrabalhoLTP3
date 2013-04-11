@@ -29,6 +29,11 @@ public class Produto {
         Estoque = 0;
     }
     
+    //Metodo principal
+    public static void main(String args[]){
+    
+    }
+    
     //----
 
     public int getId() {
@@ -44,7 +49,11 @@ public class Produto {
     }
 
     public void setNome(String Nome) {
-        this.Nome = Nome;
+        if((Nome.length() >= 3) || (Nome.length() <= 250)){
+            this.Nome = Nome;
+        }else{
+            System.out.print("Nome inválido");
+        }
     }
 
     public float getValor_comp() {
@@ -88,7 +97,7 @@ public class Produto {
     }
 
     public void setEstoque(int Estoque) {
-        if(Estoque > 0){
+        if(Estoque >= 0){
             this.Estoque = Estoque;
         }else{
             System.out.print("Valor inválido!");
