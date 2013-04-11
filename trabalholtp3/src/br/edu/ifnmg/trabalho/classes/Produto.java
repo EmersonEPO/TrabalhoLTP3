@@ -29,11 +29,6 @@ public class Produto {
         Estoque = 0;
     }
     
-    //Metodo principal
-    public static void main(String args[]){
-    
-    }
-    
     //----
 
     public int getId() {

@@ -21,11 +21,6 @@ public class Email {
         Email_nome = "vazio";
     }
     
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
-    
     //----
 
     public int getId() {

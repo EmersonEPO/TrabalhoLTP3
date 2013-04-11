@@ -24,11 +24,6 @@ public class Item_venda {
         Qtd = 0;
     }
     
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
-    
     //---
 
     public int getId() {

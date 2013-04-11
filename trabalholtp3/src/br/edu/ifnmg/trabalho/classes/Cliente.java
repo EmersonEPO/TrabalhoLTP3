@@ -16,12 +16,7 @@ public class Cliente extends Pessoa {
     public Cliente(){
         Id = 0;
     }
-    
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
-    
+   
     //----
     
     public int getId(){

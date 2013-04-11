@@ -35,11 +35,6 @@ public class Pessoa {
         Emails = new LinkedList<Email>();
         Telefones = new LinkedList<Telefone>();
     }
- 
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
     
     //----
 
@@ -56,7 +51,7 @@ public class Pessoa {
     }
 
     public void setNome(String Nome) {
-        if((Nome.length()<3) || (Nome.length()>255)){
+        if((Nome.length()<3) || (Nome.length()>250)){
             System.out.print("O Nome é Inválido!");
         }else{
             this.Nome = Nome;
@@ -84,7 +79,6 @@ public class Pessoa {
     }
 
     public void setData(Date Data) {
-        
         Date Datalimite = new Date(1900,01,01);
         
         if(Data.before(Datalimite)){

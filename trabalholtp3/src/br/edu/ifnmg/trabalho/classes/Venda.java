@@ -35,12 +35,7 @@ public class Venda {
         Consumidor = Consumidor;
         Tipo_paga = Tipo_paga;
     }
-    
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
-    
+ 
     //----
 
     public int getId() {

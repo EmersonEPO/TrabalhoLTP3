@@ -27,11 +27,6 @@ public class Pagamento {
     }
     
     //----
-    
-    //Metodo Principal
-    public static void main(String args[]){
-    
-    }
 
     public int getId() {
         return Id;
