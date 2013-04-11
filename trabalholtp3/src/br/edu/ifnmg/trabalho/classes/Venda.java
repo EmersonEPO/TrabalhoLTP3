@@ -17,6 +17,7 @@ public class Venda {
     private int Id;
     private Date Data_venda;
     private float Total;
+    private float Total_final;
     private List<Item_venda> Itens;
     private Funcionario Atendente;
     private Cliente Consumidor;
@@ -28,6 +29,7 @@ public class Venda {
         Id = 0;
         Data_venda = new Date();
         Total = 0;
+        Total_final = 0;
         Itens = new LinkedList<Item_venda>();
         Atendente = Atendente;
         Consumidor = Consumidor;
@@ -70,6 +72,14 @@ public class Venda {
     public void setTotal(float Total) {
         this.Total = Total;
     }
+    
+    public float getTotal_final() {
+        return Total_final;
+    }
+    
+    public void setTotal_final(Pagamento Pa){
+        Total_final = (Total+(Total * Pa.getJuros())); 
+    }
 
     public List<Item_venda> getItens() {
         return Itens;
@@ -102,7 +112,23 @@ public class Venda {
     public void setTipo_paga(Pagamento Tipo_paga) {
         this.Tipo_paga = Tipo_paga;
     }
-
+    
+    public void addItem(Item_venda Iv){
+        if(!Itens.contains(Iv)){
+            Itens.add(Iv);
+            Total += Iv.getProduto().getValor_vend() * Iv.getQtd();
+        }
+    }
+    
+    public void removeItem(Item_venda Iv){
+        if(Itens.contains(Iv)){
+            Itens.remove(Iv);
+            Total -= Iv.getProduto().getValor_vend() * Iv.getQtd();
+        }
+    }
+    
+    //----
+    
     @Override
     public int hashCode() {
         int hash = 7;
