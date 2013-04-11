@@ -68,6 +68,4 @@ public class Email {
         return "Email{" + "Id=" + Id + ", Email_nome=" + Email_nome + '}';
     }
     
-    
-    
 }
