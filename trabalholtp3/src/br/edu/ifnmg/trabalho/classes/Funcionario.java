@@ -24,7 +24,15 @@ public class Funcionario extends Pessoa{
     }
     
     //----
-
+    
+     public int getId(){
+        return Id;
+    }
+    
+    public void setId(int Id){
+        this.Id = Id;
+    }
+    
     public String getUsuario() {
         return Usuario;
     }
