@@ -28,6 +28,10 @@ public class Produto {
         Descricao = "vazio";
         Estoque = 0;
     }
+
+    public Produto(int i, String escova_de_Dentes, double d) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     //----
 
