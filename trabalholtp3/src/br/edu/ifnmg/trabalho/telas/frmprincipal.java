@@ -28,7 +28,7 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jmMenuPrincipal = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiCliente = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -43,8 +43,13 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Cadastrar");
 
-        jMenuItem1.setText("Cliente");
-        jMenu2.add(jMenuItem1);
+        jmiCliente.setText("Cliente");
+        jmiCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiClienteActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiCliente);
 
         jMenuItem2.setText("Funcionario");
         jMenu2.add(jMenuItem2);
@@ -92,6 +97,12 @@ public class frmprincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmiClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClienteActionPerformed
+        frmClienteInterno janela = new frmClienteInterno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -130,7 +141,6 @@ public class frmprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -139,5 +149,6 @@ public class frmprincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuBar jmMenuPrincipal;
+    private javax.swing.JMenuItem jmiCliente;
     // End of variables declaration//GEN-END:variables
 }
