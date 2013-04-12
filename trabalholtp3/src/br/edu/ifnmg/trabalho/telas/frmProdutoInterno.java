@@ -5,6 +5,8 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 
 /**
  *
@@ -17,6 +19,7 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
      */
     public frmProdutoInterno() {
         initComponents();
+       
     }
 
     /**
@@ -54,6 +57,11 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
         });
 
         btnFinalizarProd.setText("Finalizar");
+        btnFinalizarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarProdActionPerformed(evt);
+            }
+        });
 
         btnCancelarProd.setText("Cancelar");
         btnCancelarProd.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +97,7 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
                                 .addComponent(btnCancelarProd))
                             .addComponent(txtDescricaoProd)
                             .addComponent(txtValorVendaProd))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +122,7 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizarProd)
                     .addComponent(btnCancelarProd))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,6 +143,11 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_btnCancelarProdActionPerformed
+
+    private void btnFinalizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarProdActionPerformed
+        
+        
+    }//GEN-LAST:event_btnFinalizarProdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarProd;
