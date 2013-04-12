@@ -57,8 +57,6 @@ public class frmClienteInterno extends javax.swing.JInternalFrame {
         btnFinalizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setClosable(true);
-
         lblNome.setText("Nome");
 
         lblRg.setText("Rg");
