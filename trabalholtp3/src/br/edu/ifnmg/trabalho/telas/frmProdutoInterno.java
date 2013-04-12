@@ -54,6 +54,11 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
         btnFinalizarProd.setText("Finalizar");
 
         btnCancelarProd.setText("Cancelar");
+        btnCancelarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +121,10 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
     private void txtValorVendaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorVendaProdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorVendaProdActionPerformed
+
+    private void btnCancelarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarProdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarProd;
