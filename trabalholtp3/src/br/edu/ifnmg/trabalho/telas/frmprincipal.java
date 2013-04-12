@@ -26,27 +26,67 @@ public class frmprincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jmMenuPrincipal = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("epo.pereira");
+        jMenu2.setText("Cadastrar");
+
+        jMenuItem1.setText("Cliente");
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Funcionario");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Produto");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Pagamento");
+        jMenu2.add(jMenuItem4);
+
+        jmMenuPrincipal.add(jMenu2);
+
+        jMenu3.setText("Listar");
+
+        jMenuItem5.setText("Cliente");
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem6.setText("Funcionario");
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Produto");
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem8.setText("Pagamento");
+        jMenu3.add(jMenuItem8);
+
+        jmMenuPrincipal.add(jMenu3);
+
+        jMenu1.setText("Venda");
+        jmMenuPrincipal.add(jMenu1);
+
+        setJMenuBar(jmMenuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(182, 182, 182))
+            .addGap(0, 453, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         pack();
@@ -87,6 +127,17 @@ public class frmprincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuBar jmMenuPrincipal;
     // End of variables declaration//GEN-END:variables
 }
