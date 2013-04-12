@@ -37,6 +37,12 @@ public class frmClienteInterno extends javax.swing.JInternalFrame {
         txtCpf = new javax.swing.JTextField();
         txtNascimento = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        lblRua = new javax.swing.JLabel();
+        lblNumero = new javax.swing.JLabel();
+        lblBairro = new javax.swing.JLabel();
+        txtRua = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -91,15 +97,45 @@ public class frmClienteInterno extends javax.swing.JInternalFrame {
 
         jtbTelefone.addTab("Geral", jPanel1);
 
+        lblRua.setText("Rua");
+
+        lblNumero.setText("Numero");
+
+        lblBairro.setText("Bairro");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNumero)
+                    .addComponent(lblBairro)
+                    .addComponent(lblRua))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(txtBairro, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(172, 172, 172))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRua)
+                    .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumero)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblBairro)
+                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jtbTelefone.addTab("Endereço", jPanel2);
@@ -155,13 +191,19 @@ public class frmClienteInterno extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jtbTelefone;
+    private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblNascimento;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblRg;
+    private javax.swing.JLabel lblRua;
+    private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtNascimento;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtRg;
+    private javax.swing.JTextField txtRua;
     // End of variables declaration//GEN-END:variables
 }
