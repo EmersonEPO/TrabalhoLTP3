@@ -35,9 +35,6 @@ public class frmprincipal extends javax.swing.JFrame {
         jmiVenda = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,22 +84,13 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Listar");
 
-        jMenuItem5.setText("Cliente");
+        jMenuItem5.setText("Listar Todos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
             }
         });
         jMenu3.add(jMenuItem5);
-
-        jMenuItem6.setText("Funcionario");
-        jMenu3.add(jMenuItem6);
-
-        jMenuItem7.setText("Produto");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem8.setText("Pagamento");
-        jMenu3.add(jMenuItem8);
 
         jmMenuPrincipal.add(jMenu3);
 
@@ -196,9 +184,6 @@ public class frmprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuBar jmMenuPrincipal;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiFuncionario;
