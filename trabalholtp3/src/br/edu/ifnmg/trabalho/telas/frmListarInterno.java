@@ -29,16 +29,16 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTListar = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPClienteListar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCliente = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPFuncionariosListar = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTFuncionario = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        jPVendasListar = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTVenda = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
+        jPPagamentosListar = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnFinalizarLista = new javax.swing.JButton();
@@ -56,24 +56,24 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTCliente);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPClienteListarLayout = new javax.swing.GroupLayout(jPClienteListar);
+        jPClienteListar.setLayout(jPClienteListarLayout);
+        jPClienteListarLayout.setHorizontalGroup(
+            jPClienteListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPClienteListarLayout.createSequentialGroup()
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPClienteListarLayout.setVerticalGroup(
+            jPClienteListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPClienteListarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTListar.addTab("Clientes", jPanel1);
+        jTListar.addTab("Clientes", jPClienteListar);
 
         jTFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,24 +88,24 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTFuncionario);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPFuncionariosListarLayout = new javax.swing.GroupLayout(jPFuncionariosListar);
+        jPFuncionariosListar.setLayout(jPFuncionariosListarLayout);
+        jPFuncionariosListarLayout.setHorizontalGroup(
+            jPFuncionariosListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPFuncionariosListarLayout.createSequentialGroup()
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPFuncionariosListarLayout.setVerticalGroup(
+            jPFuncionariosListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPFuncionariosListarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTListar.addTab("Funcionarios", jPanel2);
+        jTListar.addTab("Funcionarios", jPFuncionariosListar);
 
         jTVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,24 +120,24 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTVenda);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPVendasListarLayout = new javax.swing.GroupLayout(jPVendasListar);
+        jPVendasListar.setLayout(jPVendasListarLayout);
+        jPVendasListarLayout.setHorizontalGroup(
+            jPVendasListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPVendasListarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jPVendasListarLayout.setVerticalGroup(
+            jPVendasListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPVendasListarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTListar.addTab("Vendas", jPanel3);
+        jTListar.addTab("Vendas", jPVendasListar);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,24 +152,24 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPPagamentosListarLayout = new javax.swing.GroupLayout(jPPagamentosListar);
+        jPPagamentosListar.setLayout(jPPagamentosListarLayout);
+        jPPagamentosListarLayout.setHorizontalGroup(
+            jPPagamentosListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPagamentosListarLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPPagamentosListarLayout.setVerticalGroup(
+            jPPagamentosListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPagamentosListarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jTListar.addTab("Formas Pagamentos", jPanel4);
+        jTListar.addTab("Formas Pagamentos", jPPagamentosListar);
 
         btnFinalizarLista.setText("Finalizar");
         btnFinalizarLista.addActionListener(new java.awt.event.ActionListener() {
@@ -216,10 +216,10 @@ public class frmListarInterno extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalizarLista;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPClienteListar;
+    private javax.swing.JPanel jPFuncionariosListar;
+    private javax.swing.JPanel jPPagamentosListar;
+    private javax.swing.JPanel jPVendasListar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
