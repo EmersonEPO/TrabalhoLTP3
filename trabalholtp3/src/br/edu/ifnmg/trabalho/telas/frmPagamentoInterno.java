@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author emerson
@@ -40,6 +42,11 @@ public class frmPagamentoInterno extends javax.swing.JInternalFrame {
         btnFinalizarPag.setText("Finalizar");
 
         btnCancelarPag.setText("Cancelar");
+        btnCancelarPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPagActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +91,17 @@ public class frmPagamentoInterno extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPagActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Cancelar?") == 0){              
+            JOptionPane.showMessageDialog(rootPane, "Operação Cancelada");
+            this.dispose();
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnCancelarPagActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarPag;
     private javax.swing.JButton btnFinalizarPag;

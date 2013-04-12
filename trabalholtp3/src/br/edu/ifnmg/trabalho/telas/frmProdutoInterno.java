@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author emerson
@@ -123,7 +125,15 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtValorVendaProdActionPerformed
 
     private void btnCancelarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdActionPerformed
-        this.dispose();
+        if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Cancelar?") == 0){              
+            JOptionPane.showMessageDialog(rootPane, "Operação Cancelada");
+            this.dispose();
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+        
+        
     }//GEN-LAST:event_btnCancelarProdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
