@@ -76,6 +76,11 @@ public class frmprincipal extends javax.swing.JFrame {
         jMenu2.add(jmiPagamento);
 
         jmiVenda.setText("Venda");
+        jmiVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiVendaActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmiVenda);
 
         jmMenuPrincipal.add(jMenu2);
@@ -135,6 +140,12 @@ public class frmprincipal extends javax.swing.JFrame {
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiPagamentoActionPerformed
+
+    private void jmiVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVendaActionPerformed
+       frmVenda janela = new frmVenda();
+       add(janela);
+       janela.setVisible(true);
+    }//GEN-LAST:event_jmiVendaActionPerformed
 
     /**
      * @param args the command line arguments
