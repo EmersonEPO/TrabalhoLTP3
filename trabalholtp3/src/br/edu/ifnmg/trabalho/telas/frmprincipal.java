@@ -29,15 +29,15 @@ public class frmprincipal extends javax.swing.JFrame {
         jmMenuPrincipal = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmiFuncionario = new javax.swing.JMenuItem();
+        jmiProduto = new javax.swing.JMenuItem();
+        jmiPagamento = new javax.swing.JMenuItem();
+        jmiVenda = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +51,32 @@ public class frmprincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jmiCliente);
 
-        jMenuItem2.setText("Funcionario");
-        jMenu2.add(jMenuItem2);
+        jmiFuncionario.setText("Funcionario");
+        jmiFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFuncionarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiFuncionario);
 
-        jMenuItem3.setText("Produto");
-        jMenu2.add(jMenuItem3);
+        jmiProduto.setText("Produto");
+        jmiProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiProdutoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiProduto);
 
-        jMenuItem4.setText("Pagamento");
-        jMenu2.add(jMenuItem4);
+        jmiPagamento.setText("Pagamento");
+        jmiPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiPagamentoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiPagamento);
+
+        jmiVenda.setText("Venda");
+        jMenu2.add(jmiVenda);
 
         jmMenuPrincipal.add(jMenu2);
 
@@ -77,9 +95,6 @@ public class frmprincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jmMenuPrincipal.add(jMenu3);
-
-        jMenu1.setText("Venda");
-        jmMenuPrincipal.add(jMenu1);
 
         setJMenuBar(jmMenuPrincipal);
 
@@ -102,6 +117,24 @@ public class frmprincipal extends javax.swing.JFrame {
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiClienteActionPerformed
+
+    private void jmiFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFuncionarioActionPerformed
+        frmFuncionarioInterno janela = new frmFuncionarioInterno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiFuncionarioActionPerformed
+
+    private void jmiProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProdutoActionPerformed
+        frmProdutoInterno janela = new frmProdutoInterno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiProdutoActionPerformed
+
+    private void jmiPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPagamentoActionPerformed
+        frmPagamentoInterno janela = new frmPagamentoInterno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiPagamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,17 +171,17 @@ public class frmprincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuBar jmMenuPrincipal;
     private javax.swing.JMenuItem jmiCliente;
+    private javax.swing.JMenuItem jmiFuncionario;
+    private javax.swing.JMenuItem jmiPagamento;
+    private javax.swing.JMenuItem jmiProduto;
+    private javax.swing.JMenuItem jmiVenda;
     // End of variables declaration//GEN-END:variables
 }
