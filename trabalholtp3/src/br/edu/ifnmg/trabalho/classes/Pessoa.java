@@ -157,6 +157,10 @@ public class Pessoa {
     public String toString() {
         return "Pessoa{" + "Id=" + Id + ", Nome=" + Nome + ", Rg=" + Rg + ", Cpf=" + Cpf + ", Data=" + Data + ", Enderecos=" + Enderecos + ", Emails=" + Emails + ", Telefones=" + Telefones + '}';
     }
+
+    public void add(int i, String nome, String rg, String cpf, String data) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     
     

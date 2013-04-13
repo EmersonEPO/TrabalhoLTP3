@@ -24,6 +24,10 @@ public class Endereco {
         Num = 0;
         Bairro = "vazio";
     }
+
+    public Endereco(int i, String rua, String num, String bairro) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     //----
 
