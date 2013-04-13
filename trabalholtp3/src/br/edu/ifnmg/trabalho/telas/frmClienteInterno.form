@@ -226,6 +226,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Novo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarEndActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -278,6 +281,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Novo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarEmaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -330,6 +336,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Novo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarTeleActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -120,6 +120,11 @@ public class frmFuncionarioInterno extends javax.swing.JInternalFrame {
         lblBairro.setText("Bairro");
 
         btnCadastrarEnd.setText("Novo");
+        btnCadastrarEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarEndActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,6 +170,11 @@ public class frmFuncionarioInterno extends javax.swing.JInternalFrame {
         lblEmail.setText("Email");
 
         btnCadastrarEma.setText("Novo");
+        btnCadastrarEma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarEmaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -195,6 +205,11 @@ public class frmFuncionarioInterno extends javax.swing.JInternalFrame {
         lblTelefone.setText("Telefone");
 
         btnCadastrarTele.setText("Novo");
+        btnCadastrarTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarTeleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -258,6 +273,11 @@ public class frmFuncionarioInterno extends javax.swing.JInternalFrame {
         jtbFuncionario.addTab("Login", jPanel5);
 
         btnFinalizarFunc.setText("Finalizar");
+        btnFinalizarFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarFuncActionPerformed(evt);
+            }
+        });
 
         btnCancelarFunc.setText("Cancelar");
         btnCancelarFunc.addActionListener(new java.awt.event.ActionListener() {
@@ -305,6 +325,50 @@ public class frmFuncionarioInterno extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_btnCancelarFuncActionPerformed
+
+    private void btnCadastrarEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarEndActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnCadastrarEndActionPerformed
+
+    private void btnCadastrarEmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarEmaActionPerformed
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnCadastrarEmaActionPerformed
+
+    private void btnCadastrarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTeleActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnCadastrarTeleActionPerformed
+
+    private void btnFinalizarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarFuncActionPerformed
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnFinalizarFuncActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarEma;

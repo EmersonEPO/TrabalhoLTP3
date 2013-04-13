@@ -48,7 +48,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         lblItemVend = new javax.swing.JLabel();
         jcbItemVend = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddItem = new javax.swing.JButton();
         lblValorParcialComp = new javax.swing.JLabel();
         txtValorParcialCompra = new javax.swing.JTextField();
         txtQtdVend = new javax.swing.JTextField();
@@ -152,10 +152,10 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Qtd.");
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddItem.setText("Adicionar");
+        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddItemActionPerformed(evt);
             }
         });
 
@@ -182,7 +182,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtQtdVend)))
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(btnAddItem))
                             .addGroup(jPItemLayout.createSequentialGroup()
                                 .addComponent(lblValorParcialComp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,7 +205,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                             .addComponent(txtQtdVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPItemLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jButton1)))
+                        .addComponent(btnAddItem)))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,6 +218,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
         jtbVenda.addTab("Item", jPItem);
 
         btnFinalizarVend.setText("Finalizar");
+        btnFinalizarVend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendActionPerformed(evt);
+            }
+        });
 
         btnCancelarVend.setText("Cancelar");
         btnCancelarVend.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +261,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
          if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Mesmo Adicionar o Produto?") == 0){              
             JOptionPane.showMessageDialog(rootPane, "Item Adicionado!");
             this.dispose();
@@ -264,7 +269,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane,"Item Não Adicionado!");
             
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void btnCancelarVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendActionPerformed
          if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Cancelar?") == 0){              
@@ -276,10 +281,21 @@ public class frmVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnCancelarVendActionPerformed
 
+    private void btnFinalizarVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendActionPerformed
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnFinalizarVendActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnCancelarVend;
     private javax.swing.JButton btnFinalizarVend;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPGeral;
     private javax.swing.JPanel jPItem;

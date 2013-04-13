@@ -145,7 +145,14 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarProdActionPerformed
 
     private void btnFinalizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarProdActionPerformed
-       
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
     }//GEN-LAST:event_btnFinalizarProdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

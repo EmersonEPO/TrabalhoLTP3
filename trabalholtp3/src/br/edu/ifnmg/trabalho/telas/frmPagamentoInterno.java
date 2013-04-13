@@ -40,6 +40,11 @@ public class frmPagamentoInterno extends javax.swing.JInternalFrame {
         jLabel2.setText("Juros");
 
         btnFinalizarPag.setText("Finalizar");
+        btnFinalizarPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarPagActionPerformed(evt);
+            }
+        });
 
         btnCancelarPag.setText("Cancelar");
         btnCancelarPag.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +106,17 @@ public class frmPagamentoInterno extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_btnCancelarPagActionPerformed
+
+    private void btnFinalizarPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarPagActionPerformed
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
+      
+            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            
+        } else {               
+            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
+            
+        }
+    }//GEN-LAST:event_btnFinalizarPagActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarPag;
