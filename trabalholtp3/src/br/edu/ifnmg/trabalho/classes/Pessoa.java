@@ -42,17 +42,21 @@ public class Pessoa {
         return Id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int Id) throws ErroValidacaoException {
+        if(Id >= 0){
+            this.Id = Id;
+        }else{
+            throw new ErroValidacaoException("Id menor que zero");
+        }
     }
 
     public String getNome() {
         return Nome;
     }
 
-    public void setNome(String Nome) {
+    public void setNome(String Nome) throws ErroValidacaoException {
         if((Nome.length()<3) || (Nome.length()>250)){
-            System.out.print("O Nome é Inválido!");
+            throw new ErroValidacaoException("Tamanho do nome é invalido!");
         }else{
             this.Nome = Nome;
         }
@@ -78,11 +82,11 @@ public class Pessoa {
         return Data;
     }
 
-    public void setData(Date Data) {
+    public void setData(Date Data) throws ErroValidacaoException {
         Date Datalimite = new Date(1900,01,01);
         
         if(Data.before(Datalimite)){
-            System.out.print("Essa data é inválida!");
+            throw new ErroValidacaoException("A data é invalida!");
         }else{
             this.Data = Data;
         }

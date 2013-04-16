@@ -35,8 +35,12 @@ public class Endereco {
         return Id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int Id) throws ErroValidacaoException {
+        if(Id >= 0){
+            this.Id = Id;
+        }else{
+            throw new ErroValidacaoException("Id não pode ser menor que zero");
+        }
     }
 
     public String getRua() {
@@ -51,8 +55,12 @@ public class Endereco {
         return Num;
     }
 
-    public void setNum(int Num) {
+    public void setNum(int Num) throws ErroValidacaoException {
+        if(Num >= 0){
         this.Num = Num;
+        }else{
+            throw new ErroValidacaoException("Numero não pode ser menor que zero");
+        }
     }
 
     public String getBairro() {

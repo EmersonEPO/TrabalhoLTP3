@@ -30,8 +30,12 @@ public class Item_venda {
         return Id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int Id) throws ErroValidacaoException {
+        if(Id >= 0){
+            this.Id = Id;
+        }else{
+            throw new ErroValidacaoException("Id não pode ser menor que zero");
+        }
     }
 
     public float getV_produto() {
@@ -46,11 +50,11 @@ public class Item_venda {
         return Qtd;
     }
 
-    public void setQtd(int Qtd) {
+    public void setQtd(int Qtd) throws ErroValidacaoException {
         if(Qtd > 0){
             this.Qtd = Qtd;
         }else{
-            System.out.print("Valor Inválido!");
+            throw new ErroValidacaoException("Quantidade não pode ser menor ou igual a zero!");
         }
     }
 

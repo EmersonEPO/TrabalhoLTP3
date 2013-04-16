@@ -27,8 +27,12 @@ public class Email {
         return Id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int Id) throws ErroValidacaoException {
+        if(Id >= 0){
+            this.Id = Id;
+        }else{
+            throw new ErroValidacaoException("Id não pode ser menor que zero");
+        }
     }
 
     public String getEmail_nome() {
