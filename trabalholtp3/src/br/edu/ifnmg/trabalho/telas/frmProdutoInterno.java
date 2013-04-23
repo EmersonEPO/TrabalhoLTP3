@@ -4,6 +4,7 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import br.edu.ifnmg.trabalho.classes.Produto;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -145,8 +146,7 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarProdActionPerformed
 
     private void btnFinalizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarProdActionPerformed
-         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
-      
+         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){  
             JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
             
         } else {               

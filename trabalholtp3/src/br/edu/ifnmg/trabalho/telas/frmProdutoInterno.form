@@ -82,7 +82,7 @@
                   <Component id="btnFinalizarProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancelarProd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <EmptySpace pref="135" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

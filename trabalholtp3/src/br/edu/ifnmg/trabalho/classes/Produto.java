@@ -13,8 +13,8 @@ import java.util.Objects;
 public class Produto {
     private int Id;
     private String Nome;
-    private float Valor_comp;
-    private float Valor_vend;
+    private double Valor_comp;
+    private double Valor_vend;
     private String Descricao;
     private int Estoque;
    
@@ -59,11 +59,11 @@ public class Produto {
         }
     }
 
-    public float getValor_comp() {
+    public double getValor_comp() {
         return Valor_comp;
     }
 
-    public void setValor_comp(float Valor_comp) throws ErroValidacaoException {
+    public void setValor_comp(double Valor_comp) throws ErroValidacaoException {
         if(Valor_comp > 0){
             this.Valor_comp = Valor_comp;
         }else{
@@ -71,11 +71,11 @@ public class Produto {
         }
     }
 
-    public float getValor_vend() {
+    public double getValor_vend() {
         return Valor_vend;
     }
 
-    public void setValor_vend(float Valor_vend) throws ErroValidacaoException {
+    public void setValor_vend(double Valor_vend) throws ErroValidacaoException {
         if(Valor_vend > 0){
             this.Valor_vend = Valor_vend;
         }else{
@@ -128,10 +128,10 @@ public class Produto {
         if (!Objects.equals(this.Nome, other.Nome)) {
             return false;
         }
-        if (Float.floatToIntBits(this.Valor_comp) != Float.floatToIntBits(other.Valor_comp)) {
+        if (Double.doubleToLongBits(this.Valor_comp) != Double.doubleToLongBits(other.Valor_comp)) {
             return false;
         }
-        if (Float.floatToIntBits(this.Valor_vend) != Float.floatToIntBits(other.Valor_vend)) {
+        if (Double.doubleToLongBits(this.Valor_vend) != Double.doubleToLongBits(other.Valor_vend)) {
             return false;
         }
         if (!Objects.equals(this.Descricao, other.Descricao)) {
@@ -143,10 +143,10 @@ public class Produto {
         return true;
     }
 
+    
+
     @Override
     public String toString() {
         return "Produto{" + "Id=" + Id + ", Nome=" + Nome + ", Valor_comp=" + Valor_comp + ", Valor_vend=" + Valor_vend + ", Descricao=" + Descricao + ", Estoque=" + Estoque + '}';
-    }
-    
-    
+    }    
 }
