@@ -37,12 +37,5 @@ public class Bd {
         }catch(SQLException ex){
              Logger.getLogger(Bd.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
     }
-   
-
-   
-
-    
 }
