@@ -16,8 +16,8 @@ import java.util.Objects;
 public class Venda {
     private int Id;
     private Date Data_venda;
-    private float Total;
-    private float Total_final;
+    private double Total;
+    private double Total_final;
     private List<Item_venda> Itens;
     private Funcionario Atendente;
     private Cliente Consumidor;
@@ -60,15 +60,15 @@ public class Venda {
         }
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return Total;
     }
 
-    public void setTotal(float Total) {
+    public void setTotal(double Total) {
         this.Total = Total;
     }
     
-    public float getTotal_final() {
+    public double getTotal_final() {
         return Total_final;
     }
     
@@ -145,7 +145,10 @@ public class Venda {
         if (!Objects.equals(this.Data_venda, other.Data_venda)) {
             return false;
         }
-        if (Float.floatToIntBits(this.Total) != Float.floatToIntBits(other.Total)) {
+        if (Double.doubleToLongBits(this.Total) != Double.doubleToLongBits(other.Total)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.Total_final) != Double.doubleToLongBits(other.Total_final)) {
             return false;
         }
         if (!Objects.equals(this.Itens, other.Itens)) {
@@ -162,6 +165,9 @@ public class Venda {
         }
         return true;
     }
+    
+
+
 
     @Override
     public String toString() {

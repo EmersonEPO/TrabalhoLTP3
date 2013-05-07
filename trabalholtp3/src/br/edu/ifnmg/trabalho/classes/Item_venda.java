@@ -15,6 +15,7 @@ public class Item_venda {
     private float V_produto;
     private int Qtd;
     private Produto produto;
+    private boolean Ativo;
     
     //----
     
@@ -22,6 +23,7 @@ public class Item_venda {
         Id = 0;
         V_produto = 0;
         Qtd = 0;
+        
     }
     
     //---
@@ -48,6 +50,14 @@ public class Item_venda {
 
     public int getQtd() {
         return Qtd;
+    }
+    
+    public boolean isAtivo(){
+        return Ativo;
+    }
+    
+    public void setAtivo(boolean Ativo){
+        this.Ativo = Ativo;
     }
 
     public void setQtd(int Qtd) throws ErroValidacaoException {

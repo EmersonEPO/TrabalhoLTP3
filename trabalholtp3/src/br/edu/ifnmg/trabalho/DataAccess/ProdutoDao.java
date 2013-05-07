@@ -9,6 +9,7 @@ import br.edu.ifnmg.trabalho.classes.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -92,6 +93,55 @@ public class ProdutoDao {
             while(resultado.next()){
                 Produto tmp = new Produto();
                 
+            }
+            return produtos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public List<Produto> buscar(Produto filtro) throws ErroValidacaoException {
+        try {
+            
+            String sql = "select * from produtos ";
+            String where = "";
+            
+            if(filtro.getNome().length() > 0){
+                where = "nome like '%"+filtro.getNome()+"%'";
+            }
+            
+            if (filtro.getValor_vend() > 0) {
+                if(where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = where + " valor = " + filtro.getValor_vend();
+            }
+            if (filtro.getId() > 0) {
+                if(where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = where + " id = " + filtro.getId();
+            }
+            
+            if(where.length() > 0){
+                sql = sql + " where " + where;
+            }
+            
+            Statement comando = bd.getConexao().createStatement();
+            
+            ResultSet resultado = comando.executeQuery(sql);
+            // Cria uma lista de produtos vazia
+            List<Produto> produtos = new LinkedList<>();
+            while (resultado.next()) {
+                // Inicializa um objeto de produto vazio
+                Produto tmp = new Produto();
+                // Pega os valores do retorno da consulta e coloca no objeto
+                tmp.setId(resultado.getInt("id"));
+                tmp.setNome(resultado.getString("nome"));
+                tmp.setValor_vend(resultado.getDouble("valor"));
+                // Pega o objeto e coloca na lista
+                produtos.add(tmp);
             }
             return produtos;
         } catch (SQLException ex) {
