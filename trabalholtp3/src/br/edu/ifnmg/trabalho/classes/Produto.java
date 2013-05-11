@@ -5,6 +5,7 @@
 package br.edu.ifnmg.trabalho.classes;
 
 import java.util.Objects;
+import javax.swing.JTextField;
 
 /**
  *
@@ -29,10 +30,12 @@ public class Produto {
         Estoque = 0;
     }
 
-    public Produto(int i, String escova_de_Dentes, double d) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    //Construtor para a Edição
+    public Produto(int i, String nom) {
+        this.Id = i;
+        this.Nome = nom;
     }
-    
+
     //----
 
     public int getId() {
@@ -149,4 +152,11 @@ public class Produto {
     public String toString() {
         return "Produto{" + "Id=" + Id + ", Nome=" + Nome + ", Valor_comp=" + Valor_comp + ", Valor_vend=" + Valor_vend + ", Descricao=" + Descricao + ", Estoque=" + Estoque + '}';
     }    
+
+    public void getNome(String text) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+  
+
 }

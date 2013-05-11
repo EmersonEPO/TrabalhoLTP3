@@ -35,6 +35,10 @@ public class Pessoa {
         Emails = new LinkedList<Email>();
         Telefones = new LinkedList<Telefone>();
     }
+
+    public Pessoa(String text) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     //----
 

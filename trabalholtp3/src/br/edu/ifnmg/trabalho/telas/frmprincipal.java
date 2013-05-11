@@ -4,6 +4,10 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author emerson
@@ -26,6 +30,7 @@ public class frmprincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem2 = new javax.swing.JMenuItem();
         jmMenuPrincipal = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenuItem();
@@ -34,7 +39,13 @@ public class frmprincipal extends javax.swing.JFrame {
         jmiPagamento = new javax.swing.JMenuItem();
         jmiVenda = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jmListarProduto = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +95,24 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Listar");
 
-        jMenuItem5.setText("Listar Todos");
+        jMenuItem7.setText("Cliente");
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem4.setText("Funcionario");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem6.setText("Forma Pagamento");
+        jMenu3.add(jMenuItem6);
+
+        jmListarProduto.setText("Produto");
+        jmListarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListarProdutoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmListarProduto);
+
+        jMenuItem5.setText("Vendas");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -100,11 +128,11 @@ public class frmprincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 689, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 359, Short.MAX_VALUE)
         );
 
         pack();
@@ -140,10 +168,19 @@ public class frmprincipal extends javax.swing.JFrame {
        janela.setVisible(true);
     }//GEN-LAST:event_jmiVendaActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        frmListarInterno janela = new frmListarInterno();
+    private void jmListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarProdutoActionPerformed
+        frmListarProduto janela = null;
+        try {
+            janela = new frmListarProduto();
+        } catch (ErroValidacaoException ex) {
+            System.out.printf("Erro");
+        }
         add(janela);
         janela.setVisible(true);
+    }//GEN-LAST:event_jmListarProdutoActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
@@ -183,7 +220,12 @@ public class frmprincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jmListarProduto;
     private javax.swing.JMenuBar jmMenuPrincipal;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiFuncionario;

@@ -293,6 +293,7 @@ public class frmClienteInterno extends javax.swing.JInternalFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
          if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
       
+            Pessoa cliente = new Pessoa(txtNome.getText());
             JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
             
         } else {               

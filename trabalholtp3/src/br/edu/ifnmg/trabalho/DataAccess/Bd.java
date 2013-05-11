@@ -30,7 +30,7 @@ public class Bd {
     public Bd(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Conexao = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/teste","root","aluno");
+            Conexao = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1/trabalho","root","epo123");
         
         }catch(ClassNotFoundException ex){
             Logger.getLogger(Bd.class.getName()).log(Level.SEVERE, null, ex); 

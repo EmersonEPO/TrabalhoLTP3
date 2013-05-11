@@ -29,17 +29,21 @@ public class ProdutoDao {
     public boolean Salvar(Produto obj) {
         try {
             if (obj.getId() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into produto(nome,descricao,valor) values(?,?,?)");
-                comando.setString(0, obj.getNome());
-                comando.setDouble(1, obj.getValor_vend());
-                comando.setString(0, obj.getDescricao());
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into produtos(nome,valor_comp,valor_unit,descricao,estoque) values(?,?,?,?,?)");
+                comando.setString(1, obj.getNome());
+                comando.setDouble(2, obj.getValor_comp());
+                comando.setDouble(3, obj.getValor_vend());
+                comando.setString(4, obj.getDescricao());
+                comando.setInt(5, obj.getEstoque());
                 comando.executeUpdate();
             } else {
-                PreparedStatement comando = bd.getConexao().prepareStatement("update produto set nome = ?,descricao =?, valor = ? where id = ?");
-                comando.setString(0, obj.getNome());
-                comando.setDouble(1, obj.getValor_vend());
-                comando.setDouble(2, obj.getId());
-                comando.setString(0, obj.getDescricao());
+                PreparedStatement comando = bd.getConexao().prepareStatement("update produtos set nome =?,valor_comp =?,valor_unit =?,descricao =?,estoque =? where id = ?");
+                comando.setString(1, obj.getNome());
+                comando.setDouble(2, obj.getValor_comp());
+                comando.setDouble(3, obj.getValor_vend());
+                comando.setString(4, obj.getDescricao());
+                comando.setInt(5, obj.getEstoque());
+                comando.setInt(6, obj.getId());
                 comando.executeUpdate();
             }
             return true;
@@ -51,10 +55,10 @@ public class ProdutoDao {
     
      public Produto Abrir(int id) throws ErroValidacaoException {
         try {
-            Produto produto = new Produto(0, "", 0);
+            Produto produto = new Produto(0, "");
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produto where id = ?");
-            comando.setInt(0, id);
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produtos where id = ?");
+            comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
             resultado.first();
@@ -62,7 +66,9 @@ public class ProdutoDao {
             produto.setId(resultado.getInt("id"));
             produto.setNome(resultado.getString("nome"));
             produto.setDescricao(resultado.getString("descricao"));
-            produto.setValor_vend(resultado.getDouble("valor"));
+            produto.setValor_comp(resultado.getDouble("valor_comp"));
+            produto.setValor_vend(resultado.getDouble("valor_unit"));
+            produto.setEstoque(resultado.getInt("estoque"));
 
             return produto;
 
@@ -74,8 +80,8 @@ public class ProdutoDao {
     
     public boolean Apagar(Produto obj) {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("delete from produto where id = ?");
-            comando.setInt(0, obj.getId());
+            PreparedStatement comando = bd.getConexao().prepareStatement("delete from produtos where id = ?");
+            comando.setInt(1, obj.getId());
             comando.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -84,14 +90,25 @@ public class ProdutoDao {
         }
     }
     
-    public List<Produto> listarTodos() {
+    public List<Produto> listarTodos() throws ErroValidacaoException {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produto ");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produtos");
             ResultSet resultado = comando.executeQuery();
             // Cria uma lista de produtos vazia
             List<Produto> produtos = new LinkedList<>();
             while(resultado.next()){
+              // Inicializa um objeto de produto vazio
                 Produto tmp = new Produto();
+                // Pega os valores do retorno da consulta e coloca no objeto
+                tmp.setId(resultado.getInt("id"));
+                tmp.setNome(resultado.getString("nome"));
+                tmp.setValor_comp(resultado.getDouble("valor_comp"));
+                tmp.setValor_vend(resultado.getDouble("valor_unit"));
+                tmp.setDescricao(resultado.getString("descricao"));
+                tmp.setEstoque(resultado.getInt("estoque"));
+                
+                // Pega o objeto e coloca na lista
+                produtos.add(tmp);
                 
             }
             return produtos;
@@ -115,13 +132,28 @@ public class ProdutoDao {
                 if(where.length() > 0) {
                     where = where + " and ";
                 }
-                where = where + " valor = " + filtro.getValor_vend();
+                where = where + " valor_unit = " + filtro.getValor_vend();
             }
+            
+             if (filtro.getValor_comp() > 0) {
+                if(where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = where + " valor_comp = " + filtro.getValor_vend();
+            }
+            
             if (filtro.getId() > 0) {
                 if(where.length() > 0) {
                     where = where + " and ";
                 }
                 where = where + " id = " + filtro.getId();
+            }
+            
+             if (filtro.getEstoque() > 0) {
+                if(where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = where + " estoque = " + filtro.getValor_vend();
             }
             
             if(where.length() > 0){
@@ -139,7 +171,10 @@ public class ProdutoDao {
                 // Pega os valores do retorno da consulta e coloca no objeto
                 tmp.setId(resultado.getInt("id"));
                 tmp.setNome(resultado.getString("nome"));
-                tmp.setValor_vend(resultado.getDouble("valor"));
+                tmp.setValor_comp(resultado.getDouble("valor_comp"));
+                tmp.setValor_vend(resultado.getDouble("valor_unit"));
+                tmp.setDescricao(resultado.getString("descricao"));
+                tmp.setEstoque(resultado.getInt("estoque"));
                 // Pega o objeto e coloca na lista
                 produtos.add(tmp);
             }

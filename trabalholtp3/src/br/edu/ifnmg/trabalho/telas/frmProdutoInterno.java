@@ -4,7 +4,11 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import br.edu.ifnmg.trabalho.DataAccess.ProdutoDao;
+import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Produto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -42,6 +46,8 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
         txtDescricaoProd = new javax.swing.JTextField();
         btnFinalizarProd = new javax.swing.JButton();
         btnCancelarProd = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtEstoqueProd = new javax.swing.JTextField();
 
         jLabel1.setText("Nome");
 
@@ -71,6 +77,8 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("Estoque");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,7 +97,8 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -97,7 +106,8 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCancelarProd))
                             .addComponent(txtDescricaoProd)
-                            .addComponent(txtValorVendaProd))))
+                            .addComponent(txtValorVendaProd)
+                            .addComponent(txtEstoqueProd))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,11 +129,15 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtDescricaoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEstoqueProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizarProd)
                     .addComponent(btnCancelarProd))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,7 +161,34 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
 
     private void btnFinalizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarProdActionPerformed
          if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){  
-            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+            try {
+                Produto prod = new Produto();
+                
+                //Setando os dados e convertendo de text para seus respectivos tipos.
+                prod.setNome(txtNomeProd.getText());
+                prod.setValor_comp(Double.parseDouble(txtValorCompraProd.getText()));
+                prod.setValor_vend(Double.parseDouble(txtValorVendaProd.getText()));
+                prod.setDescricao(txtDescricaoProd.getText());
+                prod.setEstoque(Integer.parseInt(txtEstoqueProd.getText()));
+                
+                //Criando variavel dao para salvar os dados no BD.
+                ProdutoDao dao = new ProdutoDao();
+                //mandando prod para dao.Salvar.
+                dao.Salvar(prod);
+                
+                //Mensagem de confirmação!
+                JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
+                
+                //Limpando campos do formularios para o usuarios nao inserir os mesmos dados novamente.
+                txtNomeProd.setText(null);
+                txtValorCompraProd.setText(null);
+                txtValorVendaProd.setText(null);
+                txtDescricaoProd.setText(null);
+                txtEstoqueProd.setText(null);
+                
+            } catch (ErroValidacaoException ex) {
+                Logger.getLogger(frmProdutoInterno.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         } else {               
             JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
@@ -162,7 +203,9 @@ public class frmProdutoInterno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtDescricaoProd;
+    private javax.swing.JTextField txtEstoqueProd;
     private javax.swing.JTextField txtNomeProd;
     private javax.swing.JTextField txtValorCompraProd;
     private javax.swing.JTextField txtValorVendaProd;
