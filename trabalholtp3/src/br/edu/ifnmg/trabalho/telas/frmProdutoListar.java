@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author emerson
  */
-public class frmListarProduto extends javax.swing.JInternalFrame {
+public class frmProdutoListar extends javax.swing.JInternalFrame {
     ProdutoDao dao;
     /**
      * Creates new form frmListarProduto
      */
-    public frmListarProduto() throws ErroValidacaoException {
+    public frmProdutoListar() throws ErroValidacaoException {
         initComponents();
         dao = new ProdutoDao();
         
@@ -72,7 +72,11 @@ public class frmListarProduto extends javax.swing.JInternalFrame {
         btnFiltrarProd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListagemProd = new javax.swing.JTable();
+        jpTituloProdutoListar = new javax.swing.JPanel();
+        lblTituloProdutoListar = new javax.swing.JLabel();
+        lblTituloProdutoListar2 = new javax.swing.JLabel();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(600, 380));
 
         lblNomeProd.setText("Nome");
@@ -102,33 +106,65 @@ public class frmListarProduto extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblListagemProd);
 
+        jpTituloProdutoListar.setBackground(new java.awt.Color(0, 102, 153));
+
+        lblTituloProdutoListar.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
+        lblTituloProdutoListar.setText("Clique sobre o produto para editar.");
+
+        lblTituloProdutoListar2.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
+        lblTituloProdutoListar2.setText("Listagem de Produtos");
+
+        javax.swing.GroupLayout jpTituloProdutoListarLayout = new javax.swing.GroupLayout(jpTituloProdutoListar);
+        jpTituloProdutoListar.setLayout(jpTituloProdutoListarLayout);
+        jpTituloProdutoListarLayout.setHorizontalGroup(
+            jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTituloProdutoListarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloProdutoListarLayout.createSequentialGroup()
+                        .addComponent(lblTituloProdutoListar)
+                        .addGap(215, 215, 215))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloProdutoListarLayout.createSequentialGroup()
+                        .addComponent(lblTituloProdutoListar2)
+                        .addGap(167, 167, 167))))
+        );
+        jpTituloProdutoListarLayout.setVerticalGroup(
+            jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloProdutoListarLayout.createSequentialGroup()
+                .addGap(0, 5, Short.MAX_VALUE)
+                .addComponent(lblTituloProdutoListar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTituloProdutoListar))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpTituloProdutoListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(lblNomeProd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFiltrarProd)
-                .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNomeProd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFiltrarProd)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jpTituloProdutoListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNomeProd)
                     .addComponent(txtFiltrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeProd)
                     .addComponent(btnFiltrarProd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -169,7 +205,10 @@ public class frmListarProduto extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltrarProd;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jpTituloProdutoListar;
     private javax.swing.JLabel lblNomeProd;
+    private javax.swing.JLabel lblTituloProdutoListar;
+    private javax.swing.JLabel lblTituloProdutoListar2;
     private javax.swing.JTable tblListagemProd;
     private javax.swing.JTextField txtFiltrarProd;
     // End of variables declaration//GEN-END:variables

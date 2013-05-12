@@ -128,11 +128,11 @@ public class frmprincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGap(0, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -151,7 +151,7 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiFuncionarioActionPerformed
 
     private void jmiProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProdutoActionPerformed
-        frmProdutoInterno janela = new frmProdutoInterno();
+        frmProdutoCad janela = new frmProdutoCad();
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiProdutoActionPerformed
@@ -169,9 +169,9 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiVendaActionPerformed
 
     private void jmListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarProdutoActionPerformed
-        frmListarProduto janela = null;
+        frmProdutoListar janela = null;
         try {
-            janela = new frmListarProduto();
+            janela = new frmProdutoListar();
         } catch (ErroValidacaoException ex) {
             System.out.printf("Erro");
         }
