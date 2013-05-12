@@ -13,17 +13,20 @@ import java.util.Objects;
 public class Pagamento {
     private int Id;
     private String Nome;
-    private float Juros;
-    private int Status;
-
+    private double Juros;
+    
     //----
     
     public Pagamento(){
         Id = 0;
         Nome = "vazio";
         Juros = 0;
-        Status = 1; //Significa que a forma de pagamento esta ativa!
         
+    }
+
+    public Pagamento(int i, String nom) {
+        this.Id = i;
+        this.Nome = nom;
     }
     
     //----
@@ -44,41 +47,22 @@ public class Pagamento {
         this.Nome = Nome;
     }
 
-    public float getJuros() {
+    public double getJuros() {
         return Juros;
     }
 
-    public void setJuros(float Juros) {
+    public void setJuros(double Juros) {
         this.Juros = Juros;
     }
     
-    public int getStatus() {
-        return Status;
-    }
-
-    //Desativar forma de pagamento
-    public void CancelarPagamento() {
-        if(this.Status == 1){
-            this.Status = 0;
-        }else{
-            System.out.print("Essa forma de pagamento já esta desativada!");
-        }
-    }
-    //Ativar forma de pagamento
-    public void AtivarPagamento(){
-        if(this.Status == 0){
-            this.Status = 1;
-        }else{
-            System.out.print("Essa forma de pagamento já esta ativada!");
-        }
-    
-    }
-
     //----
-    
+
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
+        hash = 47 * hash + this.Id;
+        hash = 47 * hash + Objects.hashCode(this.Nome);
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.Juros) ^ (Double.doubleToLongBits(this.Juros) >>> 32));
         return hash;
     }
 
@@ -97,10 +81,7 @@ public class Pagamento {
         if (!Objects.equals(this.Nome, other.Nome)) {
             return false;
         }
-        if (Float.floatToIntBits(this.Juros) != Float.floatToIntBits(other.Juros)) {
-            return false;
-        }
-        if (this.Status != other.Status) {
+        if (Double.doubleToLongBits(this.Juros) != Double.doubleToLongBits(other.Juros)) {
             return false;
         }
         return true;
@@ -108,9 +89,8 @@ public class Pagamento {
 
     @Override
     public String toString() {
-        return "Pagamento{" + "Id=" + Id + ", Nome=" + Nome + ", Juros=" + Juros + ", Status=" + Status + '}';
+        return "Pagamento{" + "Id=" + Id + ", Nome=" + Nome + ", Juros=" + Juros + '}';
     }
-
     
-
+   
 }

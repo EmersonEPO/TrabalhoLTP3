@@ -41,8 +41,8 @@ public class frmprincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jmListarProduto = new javax.swing.JMenuItem();
+        jmPagamentoListar = new javax.swing.JMenuItem();
+        jmProdutoListar = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
@@ -101,16 +101,21 @@ public class frmprincipal extends javax.swing.JFrame {
         jMenuItem4.setText("Funcionario");
         jMenu3.add(jMenuItem4);
 
-        jMenuItem6.setText("Forma Pagamento");
-        jMenu3.add(jMenuItem6);
-
-        jmListarProduto.setText("Produto");
-        jmListarProduto.addActionListener(new java.awt.event.ActionListener() {
+        jmPagamentoListar.setText("Forma Pagamento");
+        jmPagamentoListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmListarProdutoActionPerformed(evt);
+                jmPagamentoListarActionPerformed(evt);
             }
         });
-        jMenu3.add(jmListarProduto);
+        jMenu3.add(jmPagamentoListar);
+
+        jmProdutoListar.setText("Produto");
+        jmProdutoListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProdutoListarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmProdutoListar);
 
         jMenuItem5.setText("Vendas");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -139,15 +144,11 @@ public class frmprincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClienteActionPerformed
-        frmClienteInterno janela = new frmClienteInterno();
-        add(janela);
-        janela.setVisible(true);
+       
     }//GEN-LAST:event_jmiClienteActionPerformed
 
     private void jmiFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFuncionarioActionPerformed
-        frmFuncionarioInterno janela = new frmFuncionarioInterno();
-        add(janela);
-        janela.setVisible(true);
+        
     }//GEN-LAST:event_jmiFuncionarioActionPerformed
 
     private void jmiProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProdutoActionPerformed
@@ -157,7 +158,7 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiProdutoActionPerformed
 
     private void jmiPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPagamentoActionPerformed
-        frmPagamentoInterno janela = new frmPagamentoInterno();
+        frmPagamentoCad janela = new frmPagamentoCad();
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiPagamentoActionPerformed
@@ -168,7 +169,7 @@ public class frmprincipal extends javax.swing.JFrame {
        janela.setVisible(true);
     }//GEN-LAST:event_jmiVendaActionPerformed
 
-    private void jmListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarProdutoActionPerformed
+    private void jmProdutoListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProdutoListarActionPerformed
         frmProdutoListar janela = null;
         try {
             janela = new frmProdutoListar();
@@ -177,11 +178,22 @@ public class frmprincipal extends javax.swing.JFrame {
         }
         add(janela);
         janela.setVisible(true);
-    }//GEN-LAST:event_jmListarProdutoActionPerformed
+    }//GEN-LAST:event_jmProdutoListarActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jmPagamentoListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPagamentoListarActionPerformed
+        frmPagamentoListar janela = null;
+        try {
+            janela = new frmPagamentoListar();
+        } catch (ErroValidacaoException ex) {
+            System.out.printf("erro");
+        }
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmPagamentoListarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,10 +235,10 @@ public class frmprincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jmListarProduto;
     private javax.swing.JMenuBar jmMenuPrincipal;
+    private javax.swing.JMenuItem jmPagamentoListar;
+    private javax.swing.JMenuItem jmProdutoListar;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiFuncionario;
     private javax.swing.JMenuItem jmiPagamento;

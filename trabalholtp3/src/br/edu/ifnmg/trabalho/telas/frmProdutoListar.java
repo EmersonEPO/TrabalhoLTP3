@@ -131,7 +131,7 @@ public class frmProdutoListar extends javax.swing.JInternalFrame {
         jpTituloProdutoListarLayout.setVerticalGroup(
             jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloProdutoListarLayout.createSequentialGroup()
-                .addGap(0, 5, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblTituloProdutoListar2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTituloProdutoListar))
@@ -152,7 +152,7 @@ public class frmProdutoListar extends javax.swing.JInternalFrame {
                         .addComponent(txtFiltrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnFiltrarProd)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,4 +212,4 @@ public class frmProdutoListar extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblListagemProd;
     private javax.swing.JTextField txtFiltrarProd;
     // End of variables declaration//GEN-END:variables
-}
+}//Maldito, fiquei um tempo aqui com essa merda pra descobrir esse erro. maldita } que tava faltando
