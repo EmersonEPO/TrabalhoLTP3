@@ -16,6 +16,12 @@ public class Cliente extends Pessoa {
     public Cliente(){
         Id = 0;
     }
+
+    public Cliente(int i, String nom) throws ErroValidacaoException {
+        this.Id = i;
+        this.setNome(nom);
+        
+    }
    
     //----
     

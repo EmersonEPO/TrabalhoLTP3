@@ -96,6 +96,11 @@ public class frmprincipal extends javax.swing.JFrame {
         jMenu3.setText("Listar");
 
         jMenuItem7.setText("Cliente");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         jMenuItem4.setText("Funcionario");
@@ -144,7 +149,9 @@ public class frmprincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClienteActionPerformed
-       
+        frmClienteCad janela = new frmClienteCad();
+        add(janela);
+        janela.setVisible(true);
     }//GEN-LAST:event_jmiClienteActionPerformed
 
     private void jmiFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFuncionarioActionPerformed
@@ -194,6 +201,18 @@ public class frmprincipal extends javax.swing.JFrame {
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmPagamentoListarActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        frmClienteListar janela = null;
+        try {
+            janela = new frmClienteListar();
+        } catch (ErroValidacaoException ex) {
+            System.out.printf("Erro Na listagem de Clientes");
+        }
+        add(janela);
+        janela.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
