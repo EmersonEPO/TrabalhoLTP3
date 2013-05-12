@@ -6,12 +6,10 @@ package br.edu.ifnmg.trabalho.DataAccess;
 
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
-import br.edu.ifnmg.trabalho.classes.Pagamento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -85,7 +83,7 @@ public class ClienteDao {
         try {
             Cliente clien = new Cliente(0, "");
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from clientes where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from pessoas where id = ?");
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
@@ -133,7 +131,7 @@ public class ClienteDao {
                 tmp.setNome(resultado.getString("nome"));
                 tmp.setCpf(resultado.getInt("cpf"));
                 tmp.setRg(resultado.getInt("rg"));
-               // tmp.setData(resultado.getDate("data"));
+                tmp.setData(resultado.getDate("data"));
                 
                 
                 // Pega o objeto e coloca na lista
@@ -150,7 +148,7 @@ public class ClienteDao {
     public List<Cliente> buscar(Cliente filtro) throws ErroValidacaoException {
         try {
             
-            String sql = "select * from clientes ";
+            String sql = "select * from pessoas";
             String where = "";
             
             if(filtro.getNome().length() > 0){
@@ -186,7 +184,7 @@ public class ClienteDao {
             Statement comando = bd.getConexao().createStatement();
             
             ResultSet resultado = comando.executeQuery(sql);
-            // Cria uma lista de pagamento vazia
+            // Cria uma lista de pessoas vazia
             List<Cliente> clien = new LinkedList<>();
             while (resultado.next()) {
                 // Inicializa um objeto de pagamento vazio
@@ -196,13 +194,14 @@ public class ClienteDao {
                 tmp.setNome(resultado.getString("nome"));
                 tmp.setCpf(resultado.getInt("cpf"));
                 tmp.setRg(resultado.getInt("rg"));
+                
      
                 // Pega o objeto e coloca na lista
                 clien.add(tmp);
             }
             return clien;
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

@@ -9,8 +9,10 @@ import br.edu.ifnmg.trabalho.DataAccess.ProdutoDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Produto;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -70,15 +72,15 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
         btnClienteCadEnde = new javax.swing.JButton();
         btnClienteCadEndeLimpar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtbCadListarEndCliente1 = new javax.swing.JTable();
-        txtCadClienteClienteFone = new javax.swing.JTextField();
-        btnClienteCadTelefone = new javax.swing.JButton();
-        lblCadclienteCliente1 = new javax.swing.JLabel();
-        lblCadClienteFone = new javax.swing.JLabel();
-        txtCadClienteFone = new javax.swing.JTextField();
-        btnClienteCadTelefoneLimpar = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtbCadListarEndCliente3 = new javax.swing.JTable();
+        lblCadclienteCliente3 = new javax.swing.JLabel();
+        lblCadClienteEmail1 = new javax.swing.JLabel();
+        txtCadClienteClienteEmail1 = new javax.swing.JTextField();
+        txtCadClienteEmail1 = new javax.swing.JTextField();
+        btnClienteCadEmail1 = new javax.swing.JButton();
+        btnClienteEmailLimpar1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -306,7 +308,7 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
 
         jtbClienteCad.addTab("Endereços", jPanel2);
 
-        jtbCadListarEndCliente1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbCadListarEndCliente3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -317,83 +319,80 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jtbCadListarEndCliente1);
+        jScrollPane4.setViewportView(jtbCadListarEndCliente3);
 
-        btnClienteCadTelefone.setText("Adcionar");
+        lblCadclienteCliente3.setText("Cliente");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(txtCadClienteClienteFone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClienteCadTelefone))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)))
+        lblCadClienteEmail1.setText("Email");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCadClienteEmail1)
+                            .addComponent(lblCadclienteCliente3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCadClienteClienteEmail1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(txtCadClienteEmail1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCadClienteClienteFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClienteCadTelefone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCadClienteClienteEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCadclienteCliente3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCadClienteEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCadClienteEmail1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        lblCadclienteCliente1.setText("Cliente");
+        btnClienteCadEmail1.setText("Adcionar");
 
-        lblCadClienteFone.setText("Telefone");
-
-        btnClienteCadTelefoneLimpar.setText("Limpar");
+        btnClienteEmailLimpar1.setText("Limpar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCadClienteFone)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCadClienteFone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                .addComponent(btnClienteCadTelefoneLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblCadclienteCliente1)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(444, 444, 444)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnClienteCadEmail1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClienteEmailLimpar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCadclienteCliente1)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(btnClienteCadTelefoneLimpar))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCadClienteFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCadClienteFone))))
+                .addComponent(btnClienteCadEmail1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClienteEmailLimpar1)
                 .addContainerGap(225, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(16, Short.MAX_VALUE)))
         );
 
         jtbClienteCad.addTab("Telefones", jPanel3);
@@ -546,12 +545,18 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
                 cliente.setCpf(Integer.parseInt(txtCpfCliente.getText()));
                 cliente.setRg(Integer.parseInt(txtRgCliente.getText()));
                 
-                SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");  
+               
+                String texto = "16/08/2004";  
+                String formato = "dd/MM/yyyy"; 
+                Date date = null;
                 try {
-                    cliente.setData(formatoData.parse(txtNomeCliente.getText()));
+                    date = new SimpleDateFormat(formato).parse(texto);
                 } catch (ParseException ex) {
-                    System.out.printf("Erro!");
+                    Logger.getLogger(frmClienteCad.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                        
+                cliente.setData(date);
+                System.out.println(date);
                 
                 //Criando variavel dao para salvar os dados no BD.
                 ClienteDao dao = new ClienteDao();
@@ -590,35 +595,35 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarProd;
     private javax.swing.JButton btnClienteCadEmail;
+    private javax.swing.JButton btnClienteCadEmail1;
     private javax.swing.JButton btnClienteCadEnde;
     private javax.swing.JButton btnClienteCadEndeLimpar;
-    private javax.swing.JButton btnClienteCadTelefone;
-    private javax.swing.JButton btnClienteCadTelefoneLimpar;
     private javax.swing.JButton btnClienteEmailLimpar;
+    private javax.swing.JButton btnClienteEmailLimpar1;
     private javax.swing.JButton btnFinalizarProd;
     private javax.swing.JButton btnLimparCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel jpTituloClienteCad;
     private javax.swing.JTable jtbCadListarEndCliente;
-    private javax.swing.JTable jtbCadListarEndCliente1;
     private javax.swing.JTable jtbCadListarEndCliente2;
+    private javax.swing.JTable jtbCadListarEndCliente3;
     private javax.swing.JTabbedPane jtbClienteCad;
     private javax.swing.JLabel lblCadClienteBairro;
     private javax.swing.JLabel lblCadClienteEmail;
-    private javax.swing.JLabel lblCadClienteFone;
+    private javax.swing.JLabel lblCadClienteEmail1;
     private javax.swing.JLabel lblCadClienteNumero;
     private javax.swing.JLabel lblCadClienteRua;
     private javax.swing.JLabel lblCadclienteCliente;
-    private javax.swing.JLabel lblCadclienteCliente1;
     private javax.swing.JLabel lblCadclienteCliente2;
+    private javax.swing.JLabel lblCadclienteCliente3;
     private javax.swing.JLabel lblClienteCadNome;
     private javax.swing.JLabel lblCpfCad;
     private javax.swing.JLabel lblNascimentoCad;
@@ -626,10 +631,10 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTituloClienteCad;
     private javax.swing.JTextField txtCadClienteBairro;
     private javax.swing.JTextField txtCadClienteClienteEmail;
+    private javax.swing.JTextField txtCadClienteClienteEmail1;
     private javax.swing.JTextField txtCadClienteClienteEnde;
-    private javax.swing.JTextField txtCadClienteClienteFone;
     private javax.swing.JTextField txtCadClienteEmail;
-    private javax.swing.JTextField txtCadClienteFone;
+    private javax.swing.JTextField txtCadClienteEmail1;
     private javax.swing.JTextField txtCadClienteNumero;
     private javax.swing.JTextField txtCadClienteRua;
     private javax.swing.JTextField txtCpfCliente;

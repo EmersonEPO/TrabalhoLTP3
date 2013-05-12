@@ -87,13 +87,13 @@ public class Pessoa {
     }
 
     public void setData(Date Data) throws ErroValidacaoException {
-        Date Datalimite = new Date(1900,01,01);
+        //Date Datalimite = new Date(1900,01,01);
         
-        if(Data.before(Datalimite)){
-            throw new ErroValidacaoException("A data é invalida!");
-        }else{
+        //if(Data.before(Datalimite)){
+            //throw new ErroValidacaoException("A data é invalida!");
+        //}else{
             this.Data = Data;
-        }
+        //}
     }
 
     public List<Endereco> getEnderecos() {
