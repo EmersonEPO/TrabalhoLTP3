@@ -35,7 +35,7 @@
           <Group type="102" attributes="0">
               <Component id="jpTituloClienteCad" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtbClienteCad" max="32767" attributes="0"/>
+              <Component id="jtbClienteCad" pref="376" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,13 +97,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                              <Component id="lblRgCad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtRgCliente" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -119,20 +113,30 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblNascimentoCad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNascimentoCliente" min="-2" pref="197" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblNascimentoCad" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                                      <Component id="lblRgCad" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtRgCliente" max="32767" attributes="0"/>
+                                  <Component id="txtNascimentoCliente" pref="197" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace pref="102" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnLimparCliente" max="32767" attributes="0"/>
-                              <Component id="btnFinalizarProd" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnFinalizarProd" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="btnLimparCliente" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="btnCancelarProd" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -170,7 +174,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="182" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -236,153 +240,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Endere&#xe7;os">
-                <Property name="tabTitle" type="java.lang.String" value="Endere&#xe7;os"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblCadClienteNumero" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCadClienteRua" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCadclienteCliente" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtCadClienteClienteEnde" max="32767" attributes="0"/>
-                                  <Component id="txtCadClienteRua" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCadClienteNumero" alignment="0" pref="197" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                              <Component id="lblCadClienteBairro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCadClienteBairro" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="164" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnClienteCadEnde" max="32767" attributes="0"/>
-                          <Component id="btnClienteCadEndeLimpar" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="413" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCadclienteCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCadClienteClienteEnde" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnClienteCadEnde" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCadClienteRua" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCadClienteRua" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnClienteCadEndeLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCadClienteNumero" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCadClienteNumero" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCadClienteBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCadClienteBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="jtbCadListarEndCliente">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="4"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JLabel" name="lblCadclienteCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cliente"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCadClienteRua">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Rua"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCadClienteNumero">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Numero"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCadClienteBairro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Bairro"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCadClienteClienteEnde">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCadClienteRua">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCadClienteNumero">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCadClienteNumeroActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCadClienteBairro">
-            </Component>
-            <Component class="javax.swing.JButton" name="btnClienteCadEnde">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Adcionar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnClienteCadEndeLimpar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Limpar"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -403,7 +260,7 @@
                           <Component id="btnClienteCadEmail1" max="32767" attributes="0"/>
                           <Component id="btnClienteEmailLimpar1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -419,7 +276,7 @@
                               <Component id="btnClienteEmailLimpar1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -433,7 +290,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane4" alignment="0" pref="403" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="0" pref="409" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -512,7 +369,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnClienteCadEmail1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Adcionar"/>
+                <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnClienteEmailLimpar1">
@@ -534,16 +391,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="453" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="453" max="-2" attributes="0"/>
-                              <Component id="btnClienteCadEmail" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnClienteEmailLimpar" min="-2" pref="96" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnClienteCadEmail" pref="81" max="32767" attributes="0"/>
+                          <Component id="btnClienteEmailLimpar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -551,7 +403,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="119" max="32767" attributes="0"/>
+                          <EmptySpace pref="104" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -563,13 +415,13 @@
                       <Component id="btnClienteCadEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnClienteEmailLimpar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                      <EmptySpace pref="257" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -663,10 +515,158 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnClienteCadEmail">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Adcionar"/>
+                <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnClienteEmailLimpar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Limpar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Endere&#xe7;os">
+                <Property name="tabTitle" type="java.lang.String" value="Endere&#xe7;os"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Component id="lblCadClienteBairro" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtCadClienteBairro" min="-2" pref="197" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnClienteCadEnde" max="32767" attributes="0"/>
+                                  <Component id="btnClienteCadEndeLimpar" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblCadClienteNumero" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCadClienteRua" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCadclienteCliente" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtCadClienteRua" pref="197" max="32767" attributes="0"/>
+                                  <Component id="txtCadClienteClienteEnde" pref="197" max="32767" attributes="0"/>
+                                  <Component id="txtCadClienteNumero" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="413" max="-2" attributes="0"/>
+                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCadclienteCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCadClienteClienteEnde" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClienteCadEnde" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCadClienteRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCadClienteRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClienteCadEndeLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCadClienteNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCadClienteNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblCadClienteBairro" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCadClienteBairro" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jtbCadListarEndCliente">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="0" rowCount="4"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblCadclienteCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cliente"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCadClienteRua">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rua"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCadClienteNumero">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCadClienteBairro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bairro"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCadClienteClienteEnde">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCadClienteRua">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCadClienteNumero">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCadClienteNumeroActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCadClienteBairro">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClienteCadEnde">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Adicionar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClienteCadEndeLimpar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpar"/>
               </Properties>

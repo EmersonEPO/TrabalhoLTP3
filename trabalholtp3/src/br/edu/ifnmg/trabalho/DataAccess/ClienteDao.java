@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -41,6 +43,9 @@ public class ClienteDao {
                
          return aux;
     }
+    
+    //Função para formartar data 00/00/0000 para 00000-00-00
+    
    
     public boolean Salvar(Cliente obj) {
         try {
@@ -49,7 +54,11 @@ public class ClienteDao {
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setInt(3, obj.getRg());
-                comando.setString(4,"19000101");
+                
+                //converter data
+                java.sql.Date dataBd = new java.sql.Date(obj.getData().getTime());
+                
+                comando.setDate(4,dataBd);
                 
                  //Pimeiramente estou inserindo os dados na tabela pessoa, para atender a obrigatoriedade da chave estrangeira em Clientes(pessoa)
                 comando.executeUpdate();
