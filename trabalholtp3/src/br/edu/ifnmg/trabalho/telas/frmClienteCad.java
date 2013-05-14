@@ -55,6 +55,12 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
         txtCpfCliente = new javax.swing.JTextField();
         txtRgCliente = new javax.swing.JTextField();
         txtNascimentoCliente = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
+            txtNascimentoCliente = new javax.swing.JFormattedTextField(data);
+        }
+        catch (Exception e){
+        }
         btnFinalizarProd = new javax.swing.JButton();
         btnLimparCliente = new javax.swing.JButton();
         btnCancelarProd = new javax.swing.JButton();
