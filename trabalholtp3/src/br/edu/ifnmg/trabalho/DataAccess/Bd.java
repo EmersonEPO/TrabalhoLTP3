@@ -31,7 +31,7 @@ public class Bd {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             //Lembre-se! No IFNMG a senha é aluno, em casa devo colocar a minha senha!
-            Conexao = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1/trabalho","root","aluno");
+            Conexao = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1/trabalho","root","epo123");
         
         }catch(ClassNotFoundException ex){
             Logger.getLogger(Bd.class.getName()).log(Level.SEVERE, null, ex); 

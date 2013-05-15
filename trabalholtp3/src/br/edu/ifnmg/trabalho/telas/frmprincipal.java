@@ -5,6 +5,7 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -205,7 +206,11 @@ public class frmprincipal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         frmClienteListar janela = null;
         try {
-            janela = new frmClienteListar();
+            try {
+                janela = new frmClienteListar();
+            } catch (ParseException ex) {
+                Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (ErroValidacaoException ex) {
             System.out.printf("Erro Na listagem de Clientes");
         }
