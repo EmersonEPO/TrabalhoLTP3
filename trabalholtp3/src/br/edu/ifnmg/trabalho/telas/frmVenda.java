@@ -4,7 +4,24 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
+import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
+import br.edu.ifnmg.trabalho.DataAccess.FuncionarioDao;
+import br.edu.ifnmg.trabalho.DataAccess.PagamentoDao;
+import br.edu.ifnmg.trabalho.DataAccess.ProdutoDao;
+import br.edu.ifnmg.trabalho.classes.Cliente;
+import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Funcionario;
+import br.edu.ifnmg.trabalho.classes.Item_venda;
+import br.edu.ifnmg.trabalho.classes.Pagamento;
+import br.edu.ifnmg.trabalho.classes.Produto;
+import br.edu.ifnmg.trabalho.classes.Venda;
+import java.text.ParseException;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +29,67 @@ import javax.swing.JOptionPane;
  */
 public class frmVenda extends javax.swing.JInternalFrame {
 
+    Venda venda;
+    ProdutoDao pdao;
+    PagamentoDao pgdao;
+    ClienteDao cdao;
+    FuncionarioDao fdao;
+    List<Produto> produtos;
+    List<Cliente> clientes;
+    List<Funcionario> funcionarios;
     /**
      * Creates new form frmVenda
      */
-    public frmVenda() {
+    public frmVenda() throws ErroValidacaoException, ParseException {
         initComponents();
+        pgdao = new PagamentoDao();
+        pdao = new ProdutoDao();
+        cdao = new ClienteDao();
+        fdao = new FuncionarioDao();
+        //============
+        List<Pagamento> pagamentos = pgdao.listarTodos();
+        jcbPagamentoVend.removeAllItems();
+        for(Pagamento pg: pagamentos){
+            jcbPagamentoVend.addItem(pg.getNome());
+        }
+        //============
+        List<Cliente> clientes = cdao.listarTodos();
+        jbcClienteVend.removeAllItems();
+        for(Cliente c: clientes){
+            jbcClienteVend.addItem(c.getNome());
+        }
+        //============
+        List<Funcionario> funcionarios = fdao.listarTodos();
+        jcbFuncionarioVend.removeAllItems();
+        for(Funcionario f: funcionarios){
+            jcbFuncionarioVend.addItem(f.getNome());
+        }
+        //============
+        List<Produto> produtos = pdao.listarTodos();
+        jcbItemVend.removeAllItems();
+        for(Produto p: produtos){
+            jcbItemVend.addItem(p.getNome());
+        }
+        
+    }
+    private void configuraCamposFormulario() {
+        txtValorParcial.setText(Double.toString(venda.getTotal()));
+        txtValorParcialCompra.setText(Double.toString(venda.getTotal()));
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Produto");
+        model.addColumn("Quantidade");
+        model.addColumn("Preço Unid");
+
+        for (Item_venda i : venda.getItens()) {
+            Vector v = new Vector();
+            v.add(i.getProduto().getNome());
+            v.add(i.getQtd());
+            v.add(i.getV_produto());
+            model.addRow(v);
+        }
+
+        jtItensVenda.setModel(model);
     }
 
     /**
@@ -37,14 +110,14 @@ public class frmVenda extends javax.swing.JInternalFrame {
         lblDataVend = new javax.swing.JLabel();
         lblValorPVenda = new javax.swing.JLabel();
         lblValorFVend = new javax.swing.JLabel();
-        txtValorFinalVend = new javax.swing.JTextField();
+        txtValorFinal = new javax.swing.JTextField();
         txtValorParcialVend = new javax.swing.JTextField();
-        txtDataVend = new javax.swing.JTextField();
+        txtValorParcial = new javax.swing.JTextField();
         jcbFuncionarioVend = new javax.swing.JComboBox();
         jcbPagamentoVend = new javax.swing.JComboBox();
         jPItem = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtItensVenda = new javax.swing.JTable();
         lblItemVend = new javax.swing.JLabel();
         jcbItemVend = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
@@ -56,6 +129,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
         btnCancelarVend = new javax.swing.JButton();
 
         jbcClienteVend.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jbcClienteVend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbcClienteVendActionPerformed(evt);
+            }
+        });
 
         lblClienteVend.setText("Cliente");
 
@@ -93,12 +171,12 @@ public class frmVenda extends javax.swing.JInternalFrame {
                         .addGap(24, 24, 24)))
                 .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbcClienteVend, 0, 117, Short.MAX_VALUE)
-                    .addComponent(txtValorFinalVend)
-                    .addComponent(txtDataVend)
+                    .addComponent(txtValorFinal)
+                    .addComponent(txtValorParcial)
                     .addComponent(jcbFuncionarioVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcbPagamentoVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtValorParcialVend))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         jPGeralLayout.setVerticalGroup(
             jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,29 +200,29 @@ public class frmVenda extends javax.swing.JInternalFrame {
                         .addComponent(txtValorParcialVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDataVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValorParcial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblValorPVenda))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtValorFinalVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblValorFVend))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jtbVenda.addTab("Geral", jPGeral);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtItensVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "Preço", "Quantidade"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtItensVenda);
 
         lblItemVend.setText("Item");
 
@@ -168,7 +246,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             .addGroup(jPItemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                     .addGroup(jPItemLayout.createSequentialGroup()
                         .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPItemLayout.createSequentialGroup()
@@ -251,7 +329,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVend)
                     .addComponent(btnFinalizarVend))
@@ -262,12 +340,28 @@ public class frmVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Mesmo Adicionar o Produto?") == 0){              
-            JOptionPane.showMessageDialog(rootPane, "Item Adicionado!");
-            this.dispose();
-        } else {               
-            JOptionPane.showMessageDialog(rootPane,"Item Não Adicionado!");
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente adicionar o item?")== 0) {
+
+            Produto p = (Produto) jcbItemVend.getSelectedItem();
+            int qtd = Integer.parseInt(txtQtdVend.getText());
+            Item_venda item = new Item_venda();
             
+            item.setProduto(p);
+            try {
+                item.setQtd(qtd);
+            } catch (ErroValidacaoException ex) {
+                Logger.getLogger(frmVenda.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
+            venda.addItem(item);
+
+            JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");
+
+            configuraCamposFormulario();
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Ação cancelada pelo usuário!");
         }
     }//GEN-LAST:event_btnAddItemActionPerformed
 
@@ -292,6 +386,10 @@ public class frmVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnFinalizarVendActionPerformed
 
+    private void jbcClienteVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcClienteVendActionPerformed
+       
+    }//GEN-LAST:event_jbcClienteVendActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnCancelarVend;
@@ -300,11 +398,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPGeral;
     private javax.swing.JPanel jPItem;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox jbcClienteVend;
     private javax.swing.JComboBox jcbFuncionarioVend;
     private javax.swing.JComboBox jcbItemVend;
     private javax.swing.JComboBox jcbPagamentoVend;
+    private javax.swing.JTable jtItensVenda;
     private javax.swing.JTabbedPane jtbVenda;
     private javax.swing.JLabel lblClienteVend;
     private javax.swing.JLabel lblDataVend;
@@ -314,9 +412,9 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblValorFVend;
     private javax.swing.JLabel lblValorPVenda;
     private javax.swing.JLabel lblValorParcialComp;
-    private javax.swing.JTextField txtDataVend;
     private javax.swing.JTextField txtQtdVend;
-    private javax.swing.JTextField txtValorFinalVend;
+    private javax.swing.JTextField txtValorFinal;
+    private javax.swing.JTextField txtValorParcial;
     private javax.swing.JTextField txtValorParcialCompra;
     private javax.swing.JTextField txtValorParcialVend;
     // End of variables declaration//GEN-END:variables

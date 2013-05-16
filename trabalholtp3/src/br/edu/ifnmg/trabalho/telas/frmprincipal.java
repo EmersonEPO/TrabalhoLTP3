@@ -179,7 +179,16 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmCadPagamentoActionPerformed
 
     private void jmCadVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadVendaActionPerformed
-       frmVenda janela = new frmVenda();
+       frmVenda janela = null;
+        try {
+            try {
+                janela = new frmVenda();
+            } catch (ParseException ex) {
+                Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
        add(janela);
        janela.setVisible(true);
     }//GEN-LAST:event_jmCadVendaActionPerformed
