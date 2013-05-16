@@ -29,15 +29,16 @@ public class ProdutoDao {
     public boolean Salvar(Produto obj) {
         try {
             if (obj.getId() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into produtos(nome,valor_comp,valor_unit,descricao,estoque) values(?,?,?,?,?)");
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into produtos(nome,valor_comp,valor_unit,descricao,estoque,status) values(?,?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setDouble(2, obj.getValor_comp());
                 comando.setDouble(3, obj.getValor_vend());
                 comando.setString(4, obj.getDescricao());
                 comando.setInt(5, obj.getEstoque());
+                comando.setInt(6, 1);
                 comando.executeUpdate();
             } else {
-                PreparedStatement comando = bd.getConexao().prepareStatement("update produtos set nome =?,valor_comp =?,valor_unit =?,descricao =?,estoque =? where id = ?");
+                PreparedStatement comando = bd.getConexao().prepareStatement("update produtos set nome=?,valor_comp=?,valor_unit=?,descricao=?,estoque=? where id = ? and status=1");
                 comando.setString(1, obj.getNome());
                 comando.setDouble(2, obj.getValor_comp());
                 comando.setDouble(3, obj.getValor_vend());
@@ -57,7 +58,7 @@ public class ProdutoDao {
         try {
             Produto produto = new Produto(0, "");
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produtos where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produtos where id=? and status=1");
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
@@ -80,7 +81,7 @@ public class ProdutoDao {
     
     public boolean Apagar(Produto obj) {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("delete from produtos where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("update produtos set status=0 where id=?");
             comando.setInt(1, obj.getId());
             comando.executeUpdate();
             return true;
@@ -92,7 +93,8 @@ public class ProdutoDao {
     
     public List<Produto> listarTodos() throws ErroValidacaoException {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from produtos");
+            PreparedStatement comando = bd.getConexao().prepareStatement(""
+                    + "select * from produtos where status=1 order by id");
             ResultSet resultado = comando.executeQuery();
             // Cria uma lista de produtos vazia
             List<Produto> produtos = new LinkedList<>();
@@ -113,7 +115,7 @@ public class ProdutoDao {
             }
             return produtos;
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("Erro ao abrir produtos LOCAL: PRODUTODAO-LISTAR TODOS");
             return null;
         }
     }
@@ -126,37 +128,17 @@ public class ProdutoDao {
             
             if(filtro.getNome().length() > 0){
                 where = "nome like '%"+filtro.getNome()+"%'";
+                where = where + " and status = 1 ";
             }
             
-            if (filtro.getValor_vend() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " valor_unit = " + filtro.getValor_vend();
-            }
-            
-             if (filtro.getValor_comp() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " valor_comp = " + filtro.getValor_vend();
-            }
-            
-            if (filtro.getId() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " id = " + filtro.getId();
-            }
-            
-             if (filtro.getEstoque() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " estoque = " + filtro.getValor_vend();
-            }
+           
             
             if(where.length() > 0){
+                sql = sql + " where " + where;
+            }
+            
+            if(where.length() == 0){
+                where = where + " status = 1 order by id";
                 sql = sql + " where " + where;
             }
             

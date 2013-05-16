@@ -33,7 +33,7 @@
                   <Group type="102" attributes="0">
                       <Component id="lblNomeProd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFiltrarCliente" min="-2" pref="380" max="-2" attributes="0"/>
+                      <Component id="txtFiltrarC" min="-2" pref="380" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnFiltrarCliente" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -57,7 +57,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtFiltrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFiltrarC" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNomeProd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnFiltrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -86,7 +86,7 @@
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFiltrarCliente">
+    <Component class="javax.swing.JTextField" name="txtFiltrarC">
     </Component>
     <Component class="javax.swing.JButton" name="btnFiltrarCliente">
       <Properties>
@@ -140,7 +140,7 @@
                           <Component id="lblTituloProdutoListar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="420" max="32767" attributes="0"/>
+                  <EmptySpace pref="376" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

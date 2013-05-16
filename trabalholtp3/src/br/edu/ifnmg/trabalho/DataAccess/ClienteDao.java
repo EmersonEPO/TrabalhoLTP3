@@ -34,7 +34,7 @@ public class ClienteDao {
     public int ChaveEstrangeira(int Cpf) throws SQLException{
          
          //Aqui estou fazendo uma consulta de pessoa(id) atravez do cpf, se e somente se cpf for igual a obj.getCpf
-         PreparedStatement comandoClienteConsulta = bd.getConexao().prepareStatement("select id from pessoas where cpf = ?");
+         PreparedStatement comandoClienteConsulta = bd.getConexao().prepareStatement("select id from pessoas where cpf = ? and status = 1");
          comandoClienteConsulta.setInt(1,Cpf); 
          ResultSet resultado = comandoClienteConsulta.executeQuery();
          resultado.first();
@@ -53,22 +53,26 @@ public class ClienteDao {
     public boolean Salvar(Cliente obj) throws SQLException {
         try {
             if (obj.getId() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into pessoas(nome,cpf,rg,data_nasc) values(?,?,?,?)");
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into pessoas(nome,cpf,rg,data_nasc,status) values(?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setInt(3, obj.getRg());
                 
+      
                 //converter data
                 java.sql.Date dataBd = new java.sql.Date(obj.getData().getTime());
                 
                 comando.setDate(4,dataBd);
+                //comando para inserir o valor 1 na pessoa desse modo ela estara ativo.
+                comando.setInt(5, 1);
                 
                 //Pimeiramente estou inserindo os dados na tabela pessoa, para atender a obrigatoriedade da chave estrangeira em Clientes(pessoa)
                 comando.executeUpdate();
              
                 //Aqui estou inserindo a chave estrageira pessoas(id) correspondente ao cpf para inserir na tabela clientes
-                PreparedStatement comandoCliente = bd.getConexao().prepareStatement("insert into clientes(pessoa) values(?)");
+                PreparedStatement comandoCliente = bd.getConexao().prepareStatement("insert into clientes(pessoa,status) values(?,?)");
                 comandoCliente.setInt(1, ChaveEstrangeira(obj.getCpf())); 
+                comandoCliente.setInt(2,1);
                 
                 //Agora estou inserindo a chave estrangeira pessoas(id) na Tabela cliente(pessoa)
                 comandoCliente.executeUpdate();
@@ -81,7 +85,6 @@ public class ClienteDao {
                 comando.setInt(4, obj.getId());
                 //Conveter Data
                 java.sql.Date dataBd = new java.sql.Date(obj.getData().getTime());
-                
                 comando.setDate(4,dataBd);
                 
                 comando.executeUpdate();
@@ -90,14 +93,15 @@ public class ClienteDao {
             //Salvando Telefone
             for (Telefone tel : obj.getTelefones()) {
                 if (tel.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into telefones(pessoa,num) values(?,?)");
+                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into telefones(pessoa,num,status) values(?,?,?)");
                     
                     comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
                     comando.setInt(2, tel.getNum());
+                    comando.setInt(3, 1);
                     comando.executeUpdate();
    
                 } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num = ? where id = ?"); 
+                    PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num=? where id=? and status=1"); 
                     comando.setInt(1, tel.getNum());
                     comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
                     comando.executeUpdate();
@@ -109,14 +113,15 @@ public class ClienteDao {
             //Salvando Email
             for (Email em : obj.getEmails()) {
                 if (em.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into emails(pessoa,email) values(?,?)");
+                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into emails(pessoa,email,status) values(?,?,?)");
                     
                     comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
                     comando.setString(2, em.getEmail_nome());
+                    comando.setInt(3, 1);
                     comando.executeUpdate();
    
                 } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update emails set email = ? where id =?"); 
+                    PreparedStatement comando = bd.getConexao().prepareStatement("update emails set email=? where id=? and status=1"); 
                     comando.setString(1, em.getEmail_nome());
                     comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
                     comando.executeUpdate();
@@ -127,20 +132,28 @@ public class ClienteDao {
             //Salvando Endereços
             for (Endereco en : obj.getEnderecos()) {
                 if (en.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro) values(?,?,?,?)");
+                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro,cidade,cep,estado,status) values(?,?,?,?,?,?,?,?)");
                     
                     comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
                     comando.setString(2, en.getRua());
                     comando.setInt(3, en.getNum());
                     comando.setString(4, en.getBairro());
+                    comando.setString(5, en.getCidade());
+                    comando.setString(6, en.getCep());
+                    comando.setString(7, en.getEstdo());
+                    comando.setInt(8, 1);
                     comando.executeUpdate();
    
                 } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update emails set rua =?, num =?, bairro =?  where id =?"); 
+                    PreparedStatement comando = bd.getConexao().prepareStatement("update enderecos set rua=?,num=?,bairro=?,cidade=?,cep=?,estado=? where id=? and status=1"); 
                     comando.setString(1, en.getRua());
                     comando.setInt(2, en.getNum());
                     comando.setString(3, en.getBairro());
-                    comando.setInt(4, ChaveEstrangeira(obj.getCpf()));
+                    comando.setString(4, en.getBairro());
+                    comando.setString(5, en.getCidade());
+                    comando.setString(6, en.getCep());
+                    comando.setString(7, en.getEstdo());
+                    comando.setInt(8, ChaveEstrangeira(obj.getCpf()));
                     comando.executeUpdate();
                 }
        
@@ -156,58 +169,45 @@ public class ClienteDao {
     
      public Cliente Abrir(int id) throws ErroValidacaoException {
         try {
-            Cliente clien = new Cliente(0, "");
+            Cliente cliente = new Cliente(0, "");
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select "
-                    + "*"
-                    + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
-                    + "where p.id =?"
-                    + "order by p.nome");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from pessoas p inner join clientes c on (c.pessoa=p.id) where p.id =? and status=1 order by p.id");
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
             resultado.first();
 
-            clien.setId(resultado.getInt("id"));
-            clien.setNome(resultado.getString("nome"));
-            clien.setCpf(resultado.getInt("cpf"));
-            clien.setRg(resultado.getInt("rg"));
-            clien.setDataRetorno(resultado.getString("data_nasc"));
-            
-  
-
+            cliente.setId(resultado.getInt("id"));
+            cliente.setNome(resultado.getString("nome"));
+            cliente.setCpf(resultado.getInt("cpf"));
+            cliente.setRg(resultado.getInt("rg"));
+            cliente.setDataRetorno(resultado.getString("data_nasc"));
+        
             resultado.first();
-            
-            
-
-            return clien;
+         
+            return cliente;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("Erro ao abrir cliente LOCAL: CLIENTEDAO-ABRIR");
             return null;
         }
     }
     
     public boolean Apagar(Cliente obj) {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("delete from clientes where id = ?");
-            comando.setInt(1, obj.getId());
+            PreparedStatement comando = bd.getConexao().prepareStatement("update clientes set status=0 where id=? ");
+            comando.setInt(2, obj.getId());
             comando.executeUpdate();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("Erro ao destivar cliente LOCAL: CLIENTEDAO-APAGAR");
             return false;
         }
     }
     
     public List<Cliente> listarTodos() throws ErroValidacaoException, ParseException {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select "
-                    + "*"
-                    + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
-                    + "order by p.nome");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from pessoas p inner join clientes c on (c.pessoa=p.id) where p.status=1 order by p.id");
             ResultSet resultado = comando.executeQuery();
             // Cria uma lista de pagamentos vazia
             List<Cliente> clien = new LinkedList<>();
@@ -220,9 +220,7 @@ public class ClienteDao {
                 tmp.setCpf(resultado.getInt("cpf"));
                 tmp.setRg(resultado.getInt("rg"));
                 tmp.setDataRetorno(resultado.getString("data_nasc"));
-                
-               
-                
+            
                 // Pega o objeto e coloca na lista
                 clien.add(tmp);
                 
@@ -237,42 +235,20 @@ public class ClienteDao {
     public List<Cliente> buscar(Cliente filtro) throws ErroValidacaoException {
         try {
             
-            String sql = "select "
-                    + "*"
-                    + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
-                    + "order by p.nome";
+            String sql = "select p.id,p.nome,p.cpf,p.rg,p.data_nasc,p,p.status from pessoas p inner join clientes c on (c.pessoa = p.id) ";
             String where = "";
             
             if(filtro.getNome().length() > 0){
-                where = "nome like '%"+filtro.getNome()+"%'";
-            }
-            
-            if (filtro.getCpf() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " cpf = " + filtro.getCpf();
-            }
-            
-            if (filtro.getRg() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " rg = " + filtro.getRg();
-            }
-           
-           
-            if (filtro.getId() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " id = " + filtro.getId();
-            }
-            
-            
+                where = "p.nome like '%"+filtro.getNome()+"%' ";
+                where = where + " and p.status = 1 ";
+            }   
 
             if(where.length() > 0){
+                sql = sql + " where " + where;
+            }
+            
+            if(where.length() == 0){
+                where = where + " p.status = 1 order by p.id ";
                 sql = sql + " where " + where;
             }
             
@@ -282,7 +258,7 @@ public class ClienteDao {
             // Cria uma lista de pessoas vazia
             List<Cliente> clien = new LinkedList<>();
             while (resultado.next()) {
-                // Inicializa um objeto de pagamento vazio
+                // Inicializa um objeto de cliente vazio
                 Cliente tmp = new Cliente();
                 // Pega os valores do retorno da consulta e coloca no objeto
                 tmp.setId(resultado.getInt("id"));
@@ -297,7 +273,7 @@ public class ClienteDao {
             }
             return clien;
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("Erro ao buscar cliente LOCAL: CLIENTEDAO-BUSCAR");
             return null;
         }
     }

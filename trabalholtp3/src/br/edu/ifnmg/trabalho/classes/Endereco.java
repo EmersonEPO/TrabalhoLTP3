@@ -15,6 +15,9 @@ public class Endereco {
     private String Rua;
     private int Num;
     private String Bairro;
+    private String Cidade;
+    private String Cep;
+    private String Estdo;
     
     //----
     
@@ -42,7 +45,7 @@ public class Endereco {
             throw new ErroValidacaoException("Id não pode ser menor que zero");
         }
     }
-
+    
     public String getRua() {
         return Rua;
     }
@@ -55,6 +58,31 @@ public class Endereco {
         return Num;
     }
 
+    public String getCidade() {
+        return Cidade;
+    }
+
+    public void setCidade(String Cidade) {
+        this.Cidade = Cidade;
+    }
+
+    public String getCep() {
+        return Cep;
+    }
+
+    public void setCep(String Cep) {
+        this.Cep = Cep;
+    }
+
+    public String getEstdo() {
+        return Estdo;
+    }
+
+    public void setEstdo(String Estdo) {
+        this.Estdo = Estdo;
+    }
+
+    
     public void setNum(int Num) throws ErroValidacaoException {
         if(Num >= 0){
         this.Num = Num;
@@ -75,7 +103,7 @@ public class Endereco {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         return hash;
     }
 
@@ -100,15 +128,24 @@ public class Endereco {
         if (!Objects.equals(this.Bairro, other.Bairro)) {
             return false;
         }
+        if (!Objects.equals(this.Cidade, other.Cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.Cep, other.Cep)) {
+            return false;
+        }
+        if (!Objects.equals(this.Estdo, other.Estdo)) {
+            return false;
+        }
         return true;
     }
-    
-    //----
 
     @Override
     public String toString() {
-        return "Endereco{" + "Id=" + Id + ", Rua=" + Rua + ", Num=" + Num + ", Bairro=" + Bairro + '}';
+        return "Endereco{" + "Id=" + Id + ", Rua=" + Rua + ", Num=" + Num + ", Bairro=" + Bairro + ", Cidade=" + Cidade + ", Cep=" + Cep + ", Estdo=" + Estdo + '}';
     }
+
+   
     
     
    

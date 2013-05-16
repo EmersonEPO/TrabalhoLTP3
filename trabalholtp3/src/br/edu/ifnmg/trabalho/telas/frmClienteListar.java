@@ -7,6 +7,7 @@ package br.edu.ifnmg.trabalho.telas;
 import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Pessoa;
 import br.edu.ifnmg.trabalho.classes.Telefone;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -26,8 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmClienteListar extends javax.swing.JInternalFrame {
     ClienteDao dao;
-    Cliente cliente = new Cliente();
-    Telefone aux = new Telefone();
+   
     /**
      * Creates new form frmListarProduto
      */
@@ -50,13 +50,13 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
         model.addColumn("Nascimento");
 
         
-        for (Cliente cliente : lista) {
+        for (Cliente clientes : lista) {
             Vector valores = new Vector();
-            valores.add(0,cliente.getId());
-            valores.add(1,cliente.getNome());
-            valores.add(2,cliente.getCpf());
-            valores.add(3,cliente.getRg());
-            valores.add(4,cliente.getDataRetorno());
+            valores.add(0,clientes.getId());
+            valores.add(1,clientes.getNome());
+            valores.add(2,clientes.getCpf());
+            valores.add(3,clientes.getRg());
+            valores.add(4,clientes.getDataRetorno());
             
             model.addRow(valores);
         }
@@ -76,7 +76,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblNomeProd = new javax.swing.JLabel();
-        txtFiltrarCliente = new javax.swing.JTextField();
+        txtFiltrarC = new javax.swing.JTextField();
         btnFiltrarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListagemCliente = new javax.swing.JTable();
@@ -141,7 +141,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addGroup(jpTituloProdutoListarLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(lblTituloProdutoListar)))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         jpTituloProdutoListarLayout.setVerticalGroup(
             jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +224,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNomeProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFiltrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFiltrarC, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnFiltrarCliente))
                     .addComponent(jScrollPane1))
@@ -243,7 +243,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFiltrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFiltrarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNomeProd)
                             .addComponent(btnFiltrarCliente))
                         .addGap(34, 34, 34)
@@ -263,21 +263,25 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFiltrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarClienteActionPerformed
-        Cliente clien = new Cliente();
-        try {
-            clien.setNome(txtFiltrarCliente.getText());
-        } catch (ErroValidacaoException ex) {
+       Cliente c = new Cliente();
+        try{
+            c.setNome(txtFiltrarC.getText());
+        }catch(Exception ex){
             System.out.printf("Erro");
         }
         
         List<Cliente> lista = null;
         try {
-            lista = dao.buscar(clien);
+            lista = dao.buscar(c);
         } catch (ErroValidacaoException ex) {
             System.out.printf("Erro");
         }
         
         preencheTabela(lista);
+        
+        
+       
+       
     }//GEN-LAST:event_btnFiltrarClienteActionPerformed
 
     private void tblListagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemClienteMouseClicked
@@ -300,6 +304,6 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTituloClienteListar;
     private javax.swing.JLabel lblTituloProdutoListar;
     private javax.swing.JTable tblListagemCliente;
-    private javax.swing.JTextField txtFiltrarCliente;
+    private javax.swing.JTextField txtFiltrarC;
     // End of variables declaration//GEN-END:variables
 }

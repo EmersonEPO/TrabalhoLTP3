@@ -62,10 +62,11 @@ public class Pessoa {
     }
 
     public void setNome(String Nome) throws ErroValidacaoException {
-        if((Nome.length()<3) || (Nome.length()>250)){
-            throw new ErroValidacaoException("Tamanho do nome é invalido!");
+        if((Nome.length()>=3) || (Nome.length()<=250)){
+            this.Nome = Nome;       
         }else{
-            this.Nome = Nome;
+           throw new ErroValidacaoException("Tamanho do nome é invalido!");
+           
         }
     }
 
