@@ -8,25 +8,31 @@ import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.Email;
 import br.edu.ifnmg.trabalho.classes.Endereco;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Funcionario;
 import br.edu.ifnmg.trabalho.classes.Telefone;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.security.util.Length;
 
 /**
  *
  * @author aluno
  */
-public class ClienteDao {
+public class FuncionarioDao {
     private Bd bd;
     
-    public ClienteDao(){
+    public FuncionarioDao(){
         bd = new Bd();
     }
     
@@ -34,23 +40,21 @@ public class ClienteDao {
     public int ChaveEstrangeira(int Cpf) throws SQLException{
          
          //Aqui estou fazendo uma consulta de pessoa(id) atravez do cpf, se e somente se cpf for igual a obj.getCpf
-         PreparedStatement comandoClienteConsulta = bd.getConexao().prepareStatement("select id from pessoas where cpf = ?");
-         comandoClienteConsulta.setInt(1,Cpf); 
-         ResultSet resultado = comandoClienteConsulta.executeQuery();
+         PreparedStatement comandoConsulta = bd.getConexao().prepareStatement("select id from pessoas where cpf = ?");
+         comandoConsulta.setInt(1,Cpf); 
+         ResultSet resultado = comandoConsulta.executeQuery();
          resultado.first();
                 
          //Aqui criei uma variavel do tipo inteiro para armazenar o valor da consulta pessoas(id)
          int aux;
          aux = resultado.getInt("id");
        
-               
          return aux;
     }
     
-    //Função para formartar data 00/00/0000 para 00000-00-00
-    
    
-    public boolean Salvar(Cliente obj) throws SQLException {
+   
+    public boolean Salvar(Funcionario obj) throws SQLException {
         try {
             if (obj.getId() == 0) {
                 PreparedStatement comando = bd.getConexao().prepareStatement("insert into pessoas(nome,cpf,rg,data_nasc) values(?,?,?,?)");
@@ -67,11 +71,14 @@ public class ClienteDao {
                 comando.executeUpdate();
              
                 //Aqui estou inserindo a chave estrageira pessoas(id) correspondente ao cpf para inserir na tabela clientes
-                PreparedStatement comandoCliente = bd.getConexao().prepareStatement("insert into clientes(pessoa) values(?)");
-                comandoCliente.setInt(1, ChaveEstrangeira(obj.getCpf())); 
+                PreparedStatement comandofunc = bd.getConexao().prepareStatement("insert into funcionarios(pessoa,usuario,senha) values(?,?,?)");
+                comandofunc.setInt(1, ChaveEstrangeira(obj.getCpf())); 
+                comandofunc.setString(2, obj.getUsuario());
+                comandofunc.setString(3, obj.getSenha());
+               
                 
                 //Agora estou inserindo a chave estrangeira pessoas(id) na Tabela cliente(pessoa)
-                comandoCliente.executeUpdate();
+                comandofunc.executeUpdate();
           
             } else {
                 PreparedStatement comando = bd.getConexao().prepareStatement("update pessoas set nome =?,cpf =?,rg =?, data_nasc =? where id = ?");
@@ -154,14 +161,14 @@ public class ClienteDao {
         
     }
     
-     public Cliente Abrir(int id) throws ErroValidacaoException {
+     public Funcionario Abrir(int id) throws ErroValidacaoException {
         try {
-            Cliente clien = new Cliente(0, "");
+            Funcionario func = new Funcionario(0, "");
 
             PreparedStatement comando = bd.getConexao().prepareStatement("select "
                     + "*"
                     + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
+                    + "inner join funcionarios f on (f.pessoa=p.id) "
                     + "where p.id =?"
                     + "order by p.nome");
             comando.setInt(1, id);
@@ -169,11 +176,11 @@ public class ClienteDao {
 
             resultado.first();
 
-            clien.setId(resultado.getInt("id"));
-            clien.setNome(resultado.getString("nome"));
-            clien.setCpf(resultado.getInt("cpf"));
-            clien.setRg(resultado.getInt("rg"));
-            clien.setDataRetorno(resultado.getString("data_nasc"));
+            func.setId(resultado.getInt("id"));
+            func.setNome(resultado.getString("nome"));
+            func.setCpf(resultado.getInt("cpf"));
+            func.setRg(resultado.getInt("rg"));
+            func.setDataRetorno(resultado.getString("data_nasc"));
             
   
 
@@ -181,7 +188,7 @@ public class ClienteDao {
             
             
 
-            return clien;
+            return func;
 
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,9 +196,9 @@ public class ClienteDao {
         }
     }
     
-    public boolean Apagar(Cliente obj) {
+    public boolean Apagar(Funcionario obj) {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("delete from clientes where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("delete * from funciarios where id = ?");
             comando.setInt(1, obj.getId());
             comando.executeUpdate();
             return true;
@@ -201,65 +208,61 @@ public class ClienteDao {
         }
     }
     
-    public List<Cliente> listarTodos() throws ErroValidacaoException, ParseException {
+    public List<Funcionario> listarTodos() throws ErroValidacaoException, ParseException {
         try {
             PreparedStatement comando = bd.getConexao().prepareStatement("select "
                     + "*"
                     + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
+                    + "inner join funcionarios f on (f.pessoa=p.id) "
                     + "order by p.nome");
             ResultSet resultado = comando.executeQuery();
             // Cria uma lista de pagamentos vazia
-            List<Cliente> clien = new LinkedList<>();
+            List<Funcionario> func = new LinkedList<>();
             while(resultado.next()){
               // Inicializa um objeto de Cliente vazio
-                Cliente tmp = new Cliente();
+                Funcionario tmp = new Funcionario();
                 // Pega os valores do retorno da consulta e coloca no objeto
-                tmp.setId(resultado.getInt("id"));
-                tmp.setNome(resultado.getString("nome"));
-                tmp.setCpf(resultado.getInt("cpf"));
-                tmp.setRg(resultado.getInt("rg"));
-                tmp.setDataRetorno(resultado.getString("data_nasc"));
+                tmp.setId(resultado.getInt("p.id"));
+                tmp.setNome(resultado.getString("p.nome"));
+                tmp.setCpf(resultado.getInt("p.cpf"));
+                tmp.setRg(resultado.getInt("p.rg"));
+                tmp.setDataRetorno(resultado.getString("p.data_nasc"));
                 
                
                 
                 // Pega o objeto e coloca na lista
-                clien.add(tmp);
+                func.add(tmp);
                 
             }
-            return clien;
+            return func;
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
   
-    public List<Cliente> buscar(Cliente filtro) throws ErroValidacaoException {
+    public List<Funcionario> buscar(Funcionario filtro) throws ErroValidacaoException {
         try {
             
-            String sql = "select "
-                    + "*"
-                    + "from pessoas p "
-                    + "inner join clientes c on (c.pessoa=p.id) "
-                    + "order by p.nome";
+            String sql = "select * from funcionarios f inner join pessoas p on (p.id=f.pessoa)";
             String where = "";
             
             if(filtro.getNome().length() > 0){
-                where = "nome like '%"+filtro.getNome()+"%'";
+                where = "p.nome like '%"+filtro.getNome()+"%'";
             }
             
             if (filtro.getCpf() > 0) {
                 if(where.length() > 0) {
                     where = where + " and ";
                 }
-                where = where + " cpf = " + filtro.getCpf();
+                where = where + " p.cpf = " + filtro.getCpf();
             }
             
             if (filtro.getRg() > 0) {
                 if(where.length() > 0) {
                     where = where + " and ";
                 }
-                where = where + " rg = " + filtro.getRg();
+                where = where + " p.rg = " + filtro.getRg();
             }
            
            
@@ -267,7 +270,7 @@ public class ClienteDao {
                 if(where.length() > 0) {
                     where = where + " and ";
                 }
-                where = where + " id = " + filtro.getId();
+                where = where + " p.id = " + filtro.getId();
             }
             
             
@@ -280,10 +283,10 @@ public class ClienteDao {
             
             ResultSet resultado = comando.executeQuery(sql);
             // Cria uma lista de pessoas vazia
-            List<Cliente> clien = new LinkedList<>();
+            List<Funcionario> func = new LinkedList<>();
             while (resultado.next()) {
                 // Inicializa um objeto de pagamento vazio
-                Cliente tmp = new Cliente();
+                Funcionario tmp = new Funcionario();
                 // Pega os valores do retorno da consulta e coloca no objeto
                 tmp.setId(resultado.getInt("id"));
                 tmp.setNome(resultado.getString("nome"));
@@ -293,9 +296,9 @@ public class ClienteDao {
                 
      
                 // Pega o objeto e coloca na lista
-                clien.add(tmp);
+                func.add(tmp);
             }
-            return clien;
+            return func;
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;

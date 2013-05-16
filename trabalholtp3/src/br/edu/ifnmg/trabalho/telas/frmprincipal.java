@@ -33,24 +33,24 @@ public class frmprincipal extends javax.swing.JFrame {
 
         jMenuItem2 = new javax.swing.JMenuItem();
         jmMenuPrincipal = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
+        jmCadCliente = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenuItem();
-        jmiFuncionario = new javax.swing.JMenuItem();
-        jmiProduto = new javax.swing.JMenuItem();
-        jmiPagamento = new javax.swing.JMenuItem();
-        jmiVenda = new javax.swing.JMenuItem();
+        jmCadFuncionario = new javax.swing.JMenuItem();
+        jmCadProduto = new javax.swing.JMenuItem();
+        jmCadPagamento = new javax.swing.JMenuItem();
+        jmCadVenda = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmClienteListar1 = new javax.swing.JMenuItem();
+        jmListarFuncionarios = new javax.swing.JMenuItem();
         jmPagamentoListar = new javax.swing.JMenuItem();
         jmProdutoListar = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jmListarVendas = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu2.setText("Cadastrar");
+        jmCadCliente.setText("Cadastrar");
 
         jmiCliente.setText("Cliente");
         jmiCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -58,54 +58,59 @@ public class frmprincipal extends javax.swing.JFrame {
                 jmiClienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiCliente);
+        jmCadCliente.add(jmiCliente);
 
-        jmiFuncionario.setText("Funcionario");
-        jmiFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        jmCadFuncionario.setText("Funcionario");
+        jmCadFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiFuncionarioActionPerformed(evt);
+                jmCadFuncionarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiFuncionario);
+        jmCadCliente.add(jmCadFuncionario);
 
-        jmiProduto.setText("Produto");
-        jmiProduto.addActionListener(new java.awt.event.ActionListener() {
+        jmCadProduto.setText("Produto");
+        jmCadProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiProdutoActionPerformed(evt);
+                jmCadProdutoActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiProduto);
+        jmCadCliente.add(jmCadProduto);
 
-        jmiPagamento.setText("Pagamento");
-        jmiPagamento.addActionListener(new java.awt.event.ActionListener() {
+        jmCadPagamento.setText("Pagamento");
+        jmCadPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiPagamentoActionPerformed(evt);
+                jmCadPagamentoActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiPagamento);
+        jmCadCliente.add(jmCadPagamento);
 
-        jmiVenda.setText("Venda");
-        jmiVenda.addActionListener(new java.awt.event.ActionListener() {
+        jmCadVenda.setText("Venda");
+        jmCadVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiVendaActionPerformed(evt);
+                jmCadVendaActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiVenda);
+        jmCadCliente.add(jmCadVenda);
 
-        jmMenuPrincipal.add(jMenu2);
+        jmMenuPrincipal.add(jmCadCliente);
 
         jMenu3.setText("Listar");
 
-        jMenuItem7.setText("Cliente");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jmClienteListar1.setText("Clientes");
+        jmClienteListar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jmClienteListar1ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu3.add(jmClienteListar1);
 
-        jMenuItem4.setText("Funcionario");
-        jMenu3.add(jMenuItem4);
+        jmListarFuncionarios.setText("Funcionario");
+        jmListarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListarFuncionariosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmListarFuncionarios);
 
         jmPagamentoListar.setText("Forma Pagamento");
         jmPagamentoListar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,13 +128,13 @@ public class frmprincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jmProdutoListar);
 
-        jMenuItem5.setText("Vendas");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jmListarVendas.setText("Vendas");
+        jmListarVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jmListarVendasActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(jmListarVendas);
 
         jmMenuPrincipal.add(jMenu3);
 
@@ -155,27 +160,29 @@ public class frmprincipal extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_jmiClienteActionPerformed
 
-    private void jmiFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFuncionarioActionPerformed
-        
-    }//GEN-LAST:event_jmiFuncionarioActionPerformed
+    private void jmCadFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadFuncionarioActionPerformed
+        frmFuncionarioCad janela = new frmFuncionarioCad();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmCadFuncionarioActionPerformed
 
-    private void jmiProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProdutoActionPerformed
+    private void jmCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadProdutoActionPerformed
         frmProdutoCad janela = new frmProdutoCad();
         add(janela);
         janela.setVisible(true);
-    }//GEN-LAST:event_jmiProdutoActionPerformed
+    }//GEN-LAST:event_jmCadProdutoActionPerformed
 
-    private void jmiPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPagamentoActionPerformed
+    private void jmCadPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadPagamentoActionPerformed
         frmPagamentoCad janela = new frmPagamentoCad();
         add(janela);
         janela.setVisible(true);
-    }//GEN-LAST:event_jmiPagamentoActionPerformed
+    }//GEN-LAST:event_jmCadPagamentoActionPerformed
 
-    private void jmiVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVendaActionPerformed
+    private void jmCadVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadVendaActionPerformed
        frmVenda janela = new frmVenda();
        add(janela);
        janela.setVisible(true);
-    }//GEN-LAST:event_jmiVendaActionPerformed
+    }//GEN-LAST:event_jmCadVendaActionPerformed
 
     private void jmProdutoListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProdutoListarActionPerformed
         frmProdutoListar janela = null;
@@ -188,9 +195,9 @@ public class frmprincipal extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_jmProdutoListarActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jmListarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarVendasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jmListarVendasActionPerformed
 
     private void jmPagamentoListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPagamentoListarActionPerformed
         frmPagamentoListar janela = null;
@@ -203,21 +210,34 @@ public class frmprincipal extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_jmPagamentoListarActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        frmClienteListar janela = null;
-        try {
-            try {
-                janela = new frmClienteListar();
-            } catch (ParseException ex) {
-                Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    private void jmListarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarFuncionariosActionPerformed
+        frmFuncionarioListar janela = null;
+        try {        
+            janela = new frmFuncionarioListar();
         } catch (ErroValidacaoException ex) {
-            System.out.printf("Erro Na listagem de Clientes");
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
         add(janela);
         janela.setVisible(true);
         
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jmListarFuncionariosActionPerformed
+
+    private void jmClienteListar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmClienteListar1ActionPerformed
+        // TODO add your handling code here:
+        frmClienteListar janela = null;
+        try {
+            janela = new frmClienteListar();
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmClienteListar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,19 +274,19 @@ public class frmprincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenu jmCadCliente;
+    private javax.swing.JMenuItem jmCadFuncionario;
+    private javax.swing.JMenuItem jmCadPagamento;
+    private javax.swing.JMenuItem jmCadProduto;
+    private javax.swing.JMenuItem jmCadVenda;
+    private javax.swing.JMenuItem jmClienteListar1;
+    private javax.swing.JMenuItem jmListarFuncionarios;
+    private javax.swing.JMenuItem jmListarVendas;
     private javax.swing.JMenuBar jmMenuPrincipal;
     private javax.swing.JMenuItem jmPagamentoListar;
     private javax.swing.JMenuItem jmProdutoListar;
     private javax.swing.JMenuItem jmiCliente;
-    private javax.swing.JMenuItem jmiFuncionario;
-    private javax.swing.JMenuItem jmiPagamento;
-    private javax.swing.JMenuItem jmiProduto;
-    private javax.swing.JMenuItem jmiVenda;
     // End of variables declaration//GEN-END:variables
 }

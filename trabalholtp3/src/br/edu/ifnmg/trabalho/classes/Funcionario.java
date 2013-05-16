@@ -24,6 +24,11 @@ public class Funcionario extends Pessoa{
     }
     
     //----
+     public Funcionario(int i, String nom) throws ErroValidacaoException {
+        this.Id = i;
+        this.setNome(nom);
+        
+    }
     
      public int getId(){
         return Id;

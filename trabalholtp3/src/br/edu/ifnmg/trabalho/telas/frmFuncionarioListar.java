@@ -5,8 +5,10 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
+import br.edu.ifnmg.trabalho.DataAccess.FuncionarioDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Funcionario;
 import br.edu.ifnmg.trabalho.classes.Telefone;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -24,24 +26,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author emerson
  */
-public class frmClienteListar extends javax.swing.JInternalFrame {
-    ClienteDao dao;
-    Cliente cliente = new Cliente();
+public class frmFuncionarioListar extends javax.swing.JInternalFrame {
+    FuncionarioDao dao;
+    Funcionario cliente = new Funcionario();
     Telefone aux = new Telefone();
     /**
      * Creates new form frmListarProduto
      */
-    public frmClienteListar() throws ErroValidacaoException, ParseException {
+    public frmFuncionarioListar() throws ErroValidacaoException, ParseException {
         initComponents();
-        dao = new ClienteDao();
+        dao = new FuncionarioDao();
         
-        List<Cliente> clientes = dao.listarTodos();
+        List<Funcionario> funcionarios = dao.listarTodos();
         
-        preencheTabela(clientes);
+        preencheTabela(funcionarios);
     }
     
     //Metodo para listar Produtos na Tabela tblListagemProd
-    private void preencheTabela(List<Cliente> lista) {
+    private void preencheTabela(List<Funcionario> lista) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
         model.addColumn("Nome");
@@ -50,18 +52,18 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
         model.addColumn("Nascimento");
 
         
-        for (Cliente cliente : lista) {
+        for (Funcionario funcionario : lista) {
             Vector valores = new Vector();
-            valores.add(0,cliente.getId());
-            valores.add(1,cliente.getNome());
-            valores.add(2,cliente.getCpf());
-            valores.add(3,cliente.getRg());
-            valores.add(4,cliente.getDataRetorno());
+            valores.add(0,funcionario.getId());
+            valores.add(1,funcionario.getNome());
+            valores.add(2,funcionario.getCpf());
+            valores.add(3,funcionario.getRg());
+            valores.add(4,funcionario.getDataRetorno());
             
             model.addRow(valores);
         }
-        tblListagemCliente.setModel(model);
-        tblListagemCliente.repaint();
+        tblListagemFuncionario.setModel(model);
+        tblListagemFuncionario.repaint();
         
     }
     
@@ -76,35 +78,35 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblNomeProd = new javax.swing.JLabel();
-        txtFiltrarCliente = new javax.swing.JTextField();
-        btnFiltrarCliente = new javax.swing.JButton();
+        txtFiltrarFuncionario = new javax.swing.JTextField();
+        btnFiltrarFuncionario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListagemCliente = new javax.swing.JTable();
+        tblListagemFuncionario = new javax.swing.JTable();
         jpTituloProdutoListar = new javax.swing.JPanel();
         lblTituloProdutoListar = new javax.swing.JLabel();
         lblTituloClienteListar = new javax.swing.JLabel();
         jpRemoverItemtbEndereco = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtbTelefone = new javax.swing.JTable();
+        jtbTelefoneFuncionario = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jtbEndereco = new javax.swing.JTable();
+        jtbEnderecoFuncionario = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jtbEmails = new javax.swing.JTable();
+        jtbEmailsFuncionario = new javax.swing.JTable();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1000, 420));
 
         lblNomeProd.setText("Nome");
 
-        btnFiltrarCliente.setText("Filtrar");
-        btnFiltrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarFuncionario.setText("Filtrar");
+        btnFiltrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltrarClienteActionPerformed(evt);
+                btnFiltrarFuncionarioActionPerformed(evt);
             }
         });
 
-        tblListagemCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tblListagemFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -115,33 +117,33 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
 
             }
         ));
-        tblListagemCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblListagemFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblListagemClienteMouseClicked(evt);
+                tblListagemFuncionarioMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblListagemCliente);
+        jScrollPane1.setViewportView(tblListagemFuncionario);
 
         jpTituloProdutoListar.setBackground(new java.awt.Color(0, 102, 153));
 
         lblTituloProdutoListar.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
-        lblTituloProdutoListar.setText("Clique sobre o produto para editar.");
+        lblTituloProdutoListar.setText("Clique sobre o funcionario para editar.");
 
         lblTituloClienteListar.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
-        lblTituloClienteListar.setText("Listagem de Clientes");
+        lblTituloClienteListar.setText("Listagem de Funcionarios");
 
         javax.swing.GroupLayout jpTituloProdutoListarLayout = new javax.swing.GroupLayout(jpTituloProdutoListar);
         jpTituloProdutoListar.setLayout(jpTituloProdutoListarLayout);
         jpTituloProdutoListarLayout.setHorizontalGroup(
             jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTituloProdutoListarLayout.createSequentialGroup()
-                .addGap(364, 364, 364)
-                .addGroup(jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTituloClienteListar)
-                    .addGroup(jpTituloProdutoListarLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lblTituloProdutoListar)))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addGap(399, 399, 399)
+                .addComponent(lblTituloProdutoListar)
+                .addContainerGap(402, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloProdutoListarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTituloClienteListar)
+                .addGap(334, 334, 334))
         );
         jpTituloProdutoListarLayout.setVerticalGroup(
             jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +175,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jtbTelefone.setModel(new javax.swing.table.DefaultTableModel(
+        jtbTelefoneFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -184,9 +186,9 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jtbTelefone);
+        jScrollPane2.setViewportView(jtbTelefoneFuncionario);
 
-        jtbEndereco.setModel(new javax.swing.table.DefaultTableModel(
+        jtbEnderecoFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -197,9 +199,9 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(jtbEndereco);
+        jScrollPane3.setViewportView(jtbEnderecoFuncionario);
 
-        jtbEmails.setModel(new javax.swing.table.DefaultTableModel(
+        jtbEmailsFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -210,7 +212,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane4.setViewportView(jtbEmails);
+        jScrollPane4.setViewportView(jtbEmailsFuncionario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,9 +226,9 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNomeProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFiltrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFiltrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnFiltrarCliente))
+                        .addComponent(btnFiltrarFuncionario))
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -243,9 +245,9 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFiltrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFiltrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNomeProd)
-                            .addComponent(btnFiltrarCliente))
+                            .addComponent(btnFiltrarFuncionario))
                         .addGap(34, 34, 34)
                         .addComponent(jpRemoverItemtbEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,30 +264,30 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFiltrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarClienteActionPerformed
-        Cliente clien = new Cliente();
+    private void btnFiltrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarFuncionarioActionPerformed
+        Funcionario func = new Funcionario();
         try {
-            clien.setNome(txtFiltrarCliente.getText());
+            func.setNome(txtFiltrarFuncionario.getText());
         } catch (ErroValidacaoException ex) {
             System.out.printf("Erro");
         }
         
-        List<Cliente> lista = null;
+        List<Funcionario> lista = null;
         try {
-            lista = dao.buscar(clien);
+            lista = dao.buscar(func);
         } catch (ErroValidacaoException ex) {
             System.out.printf("Erro");
         }
         
         preencheTabela(lista);
-    }//GEN-LAST:event_btnFiltrarClienteActionPerformed
+    }//GEN-LAST:event_btnFiltrarFuncionarioActionPerformed
 
-    private void tblListagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemClienteMouseClicked
+    private void tblListagemFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemFuncionarioMouseClicked
        
-    }//GEN-LAST:event_tblListagemClienteMouseClicked
+    }//GEN-LAST:event_tblListagemFuncionarioMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFiltrarCliente;
+    private javax.swing.JButton btnFiltrarFuncionario;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -293,13 +295,13 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel jpRemoverItemtbEndereco;
     private javax.swing.JPanel jpTituloProdutoListar;
-    private javax.swing.JTable jtbEmails;
-    private javax.swing.JTable jtbEndereco;
-    private javax.swing.JTable jtbTelefone;
+    private javax.swing.JTable jtbEmailsFuncionario;
+    private javax.swing.JTable jtbEnderecoFuncionario;
+    private javax.swing.JTable jtbTelefoneFuncionario;
     private javax.swing.JLabel lblNomeProd;
     private javax.swing.JLabel lblTituloClienteListar;
     private javax.swing.JLabel lblTituloProdutoListar;
-    private javax.swing.JTable tblListagemCliente;
-    private javax.swing.JTextField txtFiltrarCliente;
+    private javax.swing.JTable tblListagemFuncionario;
+    private javax.swing.JTextField txtFiltrarFuncionario;
     // End of variables declaration//GEN-END:variables
 }
