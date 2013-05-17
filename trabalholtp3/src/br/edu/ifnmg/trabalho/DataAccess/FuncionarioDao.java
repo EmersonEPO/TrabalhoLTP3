@@ -83,17 +83,14 @@ public class FuncionarioDao {
                 comandofunc.executeUpdate();
           
             } else {
-                PreparedStatement comando = bd.getConexao().prepareStatement("update pessoas set nome =?,cpf =?,rg =?, data_nasc =? where id = ? and status=1");
+                PreparedStatement comando = bd.getConexao().prepareStatement("update pessoas set nome=?,cpf=?,rg=?,data_nasc=? where id=? and status=1");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setInt(3, obj.getRg());
-                comando.setInt(4, obj.getId());
-                //Conveter Data
                 java.sql.Date dataBd = new java.sql.Date(obj.getData().getTime());
-                
                 comando.setDate(4,dataBd);
-                
                 comando.executeUpdate();
+                comando.setInt(5, obj.getId());
             }
            
             //Salvando Telefone
@@ -107,7 +104,7 @@ public class FuncionarioDao {
                     comando.executeUpdate();
    
                 } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num = ? where id = ? and status=1"); 
+                    PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num=? where id=? and status=1"); 
                     comando.setInt(1, tel.getNum());
                     comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
                     comando.executeUpdate();
@@ -138,27 +135,21 @@ public class FuncionarioDao {
             //Salvando Endereços
             for (Endereco en : obj.getEnderecos()) {
                 if (en.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro,cidade,cep,estado,status) values(?,?,?,?,?,?,?,?)");
+                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro,status) values(?,?,?,?,?)");
                     
                     comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
                     comando.setString(2, en.getRua());
                     comando.setInt(3, en.getNum());
                     comando.setString(4, en.getBairro());
-                    comando.setString(6, en.getCidade());
-                    comando.setString(6, en.getCep());
-                    comando.setString(7, en.getEstdo());
-                    comando.setInt(8, 1);
+                    comando.setInt(5, 1);
                     comando.executeUpdate();
    
                 } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update emails set rua=?,num =?,bairro=?,cidade=?,cep=?,estado=?  where id =? and status=1"); 
+                    PreparedStatement comando = bd.getConexao().prepareStatement("update enderecos set rua=?,num=?,bairro=?  where id=? and status=1"); 
                     comando.setString(1, en.getRua());
                     comando.setInt(2, en.getNum());
                     comando.setString(3, en.getBairro());
-                    comando.setString(4, en.getCidade());
-                    comando.setString(5, en.getCep());
-                    comando.setString(6, en.getEstdo());
-                    comando.setInt(7, ChaveEstrangeira(obj.getCpf()));
+                    comando.setInt(4, ChaveEstrangeira(obj.getCpf()));
                     comando.executeUpdate();
                 }
        
@@ -176,29 +167,27 @@ public class FuncionarioDao {
         try {
             Funcionario func = new Funcionario(0, "");
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select "
-                    + "*"
-                    + "from pessoas p "
-                    + "inner join funcionarios f on (f.pessoa=p.id) "
-                    + "where p.id =? "
-                    + "order by p.nome");
+            PreparedStatement comando = bd.getConexao().prepareStatement(""
+                    + " select p.id,p.nome,p.cpf,p.rg,p.data_nasc,p.status,f.usuario,f.senha "
+                    + " from pessoas p "
+                    + " inner join funcionarios f on (f.pessoa=p.id) "
+                    + " where p.id=? and p.status=1 "
+                    + " order by p.id");
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
             resultado.first();
 
-            func.setId(resultado.getInt("id"));
-            func.setNome(resultado.getString("nome"));
-            func.setCpf(resultado.getInt("cpf"));
-            func.setRg(resultado.getInt("rg"));
-            func.setDataRetorno(resultado.getString("data_nasc"));
-            
-  
-
+            func.setId(resultado.getInt("p.id"));
+            func.setNome(resultado.getString("p.nome"));
+            func.setCpf(resultado.getInt("p.cpf"));
+            func.setRg(resultado.getInt("p.rg"));
+            func.setDataRetorno(resultado.getString("p.data_nasc"));
+            func.setUsuario(resultado.getString("f.usuario"));
+            func.setSenha(resultado.getString("f.senha"));
+           
             resultado.first();
             
-            
-
             return func;
 
         } catch (SQLException ex) {
@@ -209,9 +198,26 @@ public class FuncionarioDao {
     
     public boolean Apagar(Funcionario obj) {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("update funcionarios set status=0 where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("update funcionarios set status=0 where pessoa=? ");
             comando.setInt(1, obj.getId());
             comando.executeUpdate();
+            
+            PreparedStatement comandoPessoa = bd.getConexao().prepareStatement("update pessoas set status=0 where p=? ");
+            comandoPessoa.setInt(1, obj.getId());
+            comandoPessoa.executeUpdate();
+            
+            PreparedStatement comandoTele = bd.getConexao().prepareStatement("update telefones set status=0 where pessoa=? ");
+            comandoTele.setInt(1, obj.getId());
+            comandoTele.executeUpdate();
+            
+            PreparedStatement comandoEma = bd.getConexao().prepareStatement("update emails set status=0 where pessoa=? ");
+            comandoEma.setInt(1, obj.getId());
+            comandoEma.executeUpdate();
+            
+            PreparedStatement comandoEnd = bd.getConexao().prepareStatement("update enderecos set status=0 where pessoa=? ");
+            comandoEnd.setInt(1, obj.getId());
+            comandoEnd.executeUpdate();
+            
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,7 +227,12 @@ public class FuncionarioDao {
     
     public List<Funcionario> listarTodos() throws ErroValidacaoException, ParseException {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from pessoas p inner join funcionarios f on (f.pessoa=p.id) order by p.id");
+            PreparedStatement comando = bd.getConexao().prepareStatement(""
+                    + " select p.id,p.nome,p.cpf,p.rg,p.data_nasc,f.usuario,f.senha,f.status,p.status "
+                    + " from pessoas p "
+                    + " inner join funcionarios f on (f.pessoa=p.id) "
+                    + " where p.status=1 and f.status=1 "
+                    + " order by p.id ");
             ResultSet resultado = comando.executeQuery();
             // Cria uma lista de pagamentos vazia
             List<Funcionario> func = new LinkedList<>();
@@ -229,13 +240,13 @@ public class FuncionarioDao {
               // Inicializa um objeto de Cliente vazio
                 Funcionario tmp = new Funcionario();
                 // Pega os valores do retorno da consulta e coloca no objeto
-                tmp.setId(resultado.getInt("id"));
-                tmp.setNome(resultado.getString("nome"));
-                tmp.setCpf(resultado.getInt("cpf"));
-                tmp.setRg(resultado.getInt("rg"));
-                tmp.setDataRetorno(resultado.getString("data_nasc"));
-                tmp.setUsuario(resultado.getString("usuario"));
-                tmp.setSenha(resultado.getString("senha"));
+                tmp.setId(resultado.getInt("p.id"));
+                tmp.setNome(resultado.getString("p.nome"));
+                tmp.setCpf(resultado.getInt("p.cpf"));
+                tmp.setRg(resultado.getInt("p.rg"));
+                tmp.setDataRetorno(resultado.getString("p.data_nasc"));
+                tmp.setUsuario(resultado.getString("f.usuario"));
+                tmp.setSenha(resultado.getString("f.senha"));
                 
                 // Pega o objeto e coloca na lista
                 func.add(tmp);
@@ -256,7 +267,7 @@ public class FuncionarioDao {
             
             if(filtro.getNome().length() > 0){
                 where = "p.nome like '%"+filtro.getNome()+"%'";
-                 where = where + " and status = 1 ";
+                where = where + " and p.statuss=1 order by p.id ";
             }
             
             if(where.length() > 0){
@@ -264,7 +275,7 @@ public class FuncionarioDao {
             }
             
             if(where.length() > 0){
-                where = where + " status = 1 ";
+                where = where + " p.status = 1 ";
                 sql = sql + " where " + where;
             }
             

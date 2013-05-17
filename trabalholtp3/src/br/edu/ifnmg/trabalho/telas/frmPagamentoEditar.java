@@ -5,10 +5,7 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import br.edu.ifnmg.trabalho.DataAccess.PagamentoDao;
-import br.edu.ifnmg.trabalho.DataAccess.ProdutoDao;
-import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Pagamento;
-import br.edu.ifnmg.trabalho.classes.Produto;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +26,8 @@ public class frmPagamentoEditar extends javax.swing.JInternalFrame {
         carregaCampos();
        
     }
+
+    
     
      private void carregaCampos() {
         txtEditarPagaId.setText(Integer.toString(pagamento.getId()));

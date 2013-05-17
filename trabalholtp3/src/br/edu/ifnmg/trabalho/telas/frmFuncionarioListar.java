@@ -4,23 +4,16 @@
  */
 package br.edu.ifnmg.trabalho.telas;
 
-import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
+import br.edu.ifnmg.trabalho.DataAccess.ClienteFuncionarioDao;
 import br.edu.ifnmg.trabalho.DataAccess.FuncionarioDao;
-import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.Email;
 import br.edu.ifnmg.trabalho.classes.Endereco;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Funcionario;
 import br.edu.ifnmg.trabalho.classes.Telefone;
-import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -29,19 +22,26 @@ import javax.swing.table.DefaultTableModel;
  * @author emerson
  */
 public class frmFuncionarioListar extends javax.swing.JInternalFrame {
+    ClienteFuncionarioDao fdao;
     FuncionarioDao dao;
-    Funcionario funcionario = new Funcionario();
-    Telefone aux = new Telefone();
+    
     /**
      * Creates new form frmListarProduto
      */
     public frmFuncionarioListar() throws ErroValidacaoException, ParseException {
         initComponents();
+        fdao = new ClienteFuncionarioDao();
         dao = new FuncionarioDao();
         
         List<Funcionario> funcionarios = dao.listarTodos();
+        List<Telefone> telefones = fdao.listarTodosTelefoneFunc();
+        List<Email> emails = fdao.listarTodosEmailFunc();
+        List<Endereco> enderecos = fdao.listarTodosEnderecoFunc();
         
         preencheTabela(funcionarios);
+        preencheTabelaTele(telefones);
+        preencheTabelaEmail(emails);
+        preencheTabelaEndereco(enderecos);
     }
     
     //Metodo para listar Produtos na Tabela tblListagemProd
@@ -73,52 +73,62 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
         
     }
     
-   private void addCamposTelefone() {
-       
+     private void preencheTabelaTele(List<Telefone> lista) {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Numero Telefone");
-
-       for (Telefone te : funcionario.getTelefones()) {
-           Vector v = new Vector();
-           v.add(te.getNum()); 
-           model.addRow(v);
-       }
-
-       jtbTelefoneFuncionario.setModel(model);
+        model.addColumn("Id");
+        model.addColumn("Telefone");
+    
+        for (Telefone telefones : lista) {
+            Vector valores = new Vector();
+            valores.add(0,telefones.getId());
+            valores.add(1,telefones.getNum());
+           
+            model.addRow(valores);
+        }
+        jtbTelefoneFuncionario.setModel(model);
+        jtbTelefoneFuncionario.repaint();
+        
     }
-    //Add Email
-    private void addCamposEmail() {
-       
+     
+    private void preencheTabelaEmail(List<Email> lista) {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("E-mail");
-
-       for (Email email : funcionario.getEmails()) {
-           Vector v = new Vector();
-           v.add(email.getEmail_nome()); 
-           model.addRow(v);
-       }
-
-       jtbEmailsFuncionario.setModel(model);
+        model.addColumn("Id");
+        model.addColumn("Email");
+     
+        for (Email emails : lista) {
+            Vector valores = new Vector();
+            valores.add(0,emails.getId());
+            valores.add(1,emails.getEmail_nome());
+           
+            model.addRow(valores);
+        }
+        jtbEmailsFuncionario.setModel(model);
+        jtbEmailsFuncionario.repaint();
+        
     }
     
-     //Add Email
-    private void addCamposEndereco() {
-       
+    private void preencheTabelaEndereco(List<Endereco> lista) {
         DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
         model.addColumn("Rua");
-        model.addColumn("Numero");
+        model.addColumn("Num");
         model.addColumn("Bairro");
-
-       for (Endereco endereco : funcionario.getEnderecos()) {
-           Vector v = new Vector();
-           v.add(0, endereco.getRua());
-           v.add(1, endereco.getNum());
-           v.add(2, endereco.getBairro());
-           model.addRow(v);
-       }
-
-       jtbEnderecoFuncionario.setModel(model);
+        
+     
+        for (Endereco ends : lista) {
+            Vector valores = new Vector();
+            valores.add(0,ends.getId());
+            valores.add(1,ends.getRua());
+            valores.add(2,ends.getNum());
+            valores.add(3,ends.getBairro());
+      
+            model.addRow(valores);
+        }
+        jtbEnderecoFuncionario.setModel(model);
+        jtbEnderecoFuncionario.repaint();
+        
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -334,16 +344,7 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrarFuncionarioActionPerformed
 
     private void tblListagemFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemFuncionarioMouseClicked
-        //====================
-        Telefone aux = new Telefone();
-        Object valor = jtbTelefoneFuncionario.getValueAt( jtbTelefoneFuncionario.getSelectedRow(), 0);
-            
-        aux.setNum((int)valor);
-        funcionario.removeTelefone(aux);
-        //Chamar tabela novamente
-        addCamposTelefone();
-        
-        //=====================
+       
     }//GEN-LAST:event_tblListagemFuncionarioMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

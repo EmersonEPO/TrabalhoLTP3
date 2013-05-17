@@ -29,19 +29,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmVenda extends javax.swing.JInternalFrame {
 
-    Venda venda;
-    ProdutoDao pdao;
-    PagamentoDao pgdao;
-    ClienteDao cdao;
-    FuncionarioDao fdao;
-    List<Produto> produtos;
-    List<Cliente> clientes;
-    List<Funcionario> funcionarios;
+        Venda venda;
+        ProdutoDao pdao;
+        PagamentoDao pgdao;
+        ClienteDao cdao;
+        FuncionarioDao fdao;
+        List<Produto> produtos;
+        List<Cliente> clientes;
+        List<Funcionario> funcionarios;
+    
     /**
      * Creates new form frmVenda
      */
     public frmVenda() throws ErroValidacaoException, ParseException {
         initComponents();
+        
         pgdao = new PagamentoDao();
         pdao = new ProdutoDao();
         cdao = new ClienteDao();
@@ -176,7 +178,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     .addComponent(jcbFuncionarioVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcbPagamentoVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtValorParcialVend))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(350, Short.MAX_VALUE))
         );
         jPGeralLayout.setVerticalGroup(
             jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +248,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             .addGroup(jPItemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                     .addGroup(jPItemLayout.createSequentialGroup()
                         .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPItemLayout.createSequentialGroup()
@@ -259,7 +261,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel7)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtQtdVend)))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAddItem))
                             .addGroup(jPItemLayout.createSequentialGroup()
                                 .addComponent(lblValorParcialComp)
@@ -271,26 +273,22 @@ public class frmVenda extends javax.swing.JInternalFrame {
         jPItemLayout.setVerticalGroup(
             jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPItemLayout.createSequentialGroup()
-                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPItemLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblItemVend)
-                            .addComponent(jcbItemVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtQtdVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPItemLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnAddItem)))
+                .addGap(21, 21, 21)
+                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblItemVend)
+                    .addComponent(jcbItemVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddItem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtQtdVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtValorParcialCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValorParcialComp))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jtbVenda.addTab("Item", jPItem);
@@ -314,22 +312,23 @@ public class frmVenda extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jtbVenda)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(btnFinalizarVend)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelarVend)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(btnFinalizarVend)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarVend))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVend)
                     .addComponent(btnFinalizarVend))
@@ -345,15 +344,13 @@ public class frmVenda extends javax.swing.JInternalFrame {
             Produto p = (Produto) jcbItemVend.getSelectedItem();
             int qtd = Integer.parseInt(txtQtdVend.getText());
             Item_venda item = new Item_venda();
-            
             item.setProduto(p);
             try {
                 item.setQtd(qtd);
             } catch (ErroValidacaoException ex) {
-                Logger.getLogger(frmVenda.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.printf("Valor nao pode ser zero");
             }
             
-
             venda.addItem(item);
 
             JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");

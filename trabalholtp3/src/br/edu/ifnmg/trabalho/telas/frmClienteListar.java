@@ -5,7 +5,10 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
+import br.edu.ifnmg.trabalho.DataAccess.ClienteFuncionarioDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
+import br.edu.ifnmg.trabalho.classes.Email;
+import br.edu.ifnmg.trabalho.classes.Endereco;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Pessoa;
 import br.edu.ifnmg.trabalho.classes.Telefone;
@@ -27,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmClienteListar extends javax.swing.JInternalFrame {
     ClienteDao dao;
+    ClienteFuncionarioDao cfdao;
    
     /**
      * Creates new form frmListarProduto
@@ -34,10 +38,18 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     public frmClienteListar() throws ErroValidacaoException, ParseException {
         initComponents();
         dao = new ClienteDao();
+        cfdao = new ClienteFuncionarioDao();
         
         List<Cliente> clientes = dao.listarTodos();
+        List<Telefone> telefones = cfdao.listarTodosTelefone();
+        List<Email> emails = cfdao.listarTodosEmail();
+        List<Endereco> enderecos = cfdao.listarTodosEndereco();
         
         preencheTabela(clientes);
+        preencheTabelaTele(telefones);
+        preencheTabelaEmail(emails);
+        preencheTabelaEndereco(enderecos);
+        
     }
     
     //Metodo para listar Produtos na Tabela tblListagemProd
@@ -64,7 +76,61 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
         tblListagemCliente.repaint();
         
     }
+     private void preencheTabelaTele(List<Telefone> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Telefone");
     
+        for (Telefone telefones : lista) {
+            Vector valores = new Vector();
+            valores.add(0,telefones.getId());
+            valores.add(1,telefones.getNum());
+           
+            model.addRow(valores);
+        }
+        jtbTelefone.setModel(model);
+        jtbTelefone.repaint();
+        
+    }
+     
+    private void preencheTabelaEmail(List<Email> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Email");
+     
+        for (Email emails : lista) {
+            Vector valores = new Vector();
+            valores.add(0,emails.getId());
+            valores.add(1,emails.getEmail_nome());
+           
+            model.addRow(valores);
+        }
+        jtbEmails.setModel(model);
+        jtbEmails.repaint();
+        
+    }
+    
+    private void preencheTabelaEndereco(List<Endereco> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Rua");
+        model.addColumn("Num");
+        model.addColumn("Bairro");
+        
+     
+        for (Endereco ends : lista) {
+            Vector valores = new Vector();
+            valores.add(0,ends.getId());
+            valores.add(1,ends.getRua());
+            valores.add(2,ends.getNum());
+            valores.add(3,ends.getBairro());
+      
+            model.addRow(valores);
+        }
+        jtbEndereco.setModel(model);
+        jtbEndereco.repaint();
+        
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,7 +207,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addGroup(jpTituloProdutoListarLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(lblTituloProdutoListar)))
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         jpTituloProdutoListarLayout.setVerticalGroup(
             jpTituloProdutoListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +296,9 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -251,7 +317,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -285,7 +351,23 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrarClienteActionPerformed
 
     private void tblListagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemClienteMouseClicked
-       
+        Object valor = tblListagemCliente.getValueAt( tblListagemCliente.getSelectedRow(), 0);
+        Cliente cliente = null;
+        try {
+            cliente = dao.Abrir((int)valor);
+        } catch (ErroValidacaoException ex) {
+            System.out.printf("Erro");        }
+        frmClienteEditar janela = null;
+        try {
+            janela = new frmClienteEditar(cliente, dao);
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(frmClienteListar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(frmClienteListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tblListagemClienteMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
