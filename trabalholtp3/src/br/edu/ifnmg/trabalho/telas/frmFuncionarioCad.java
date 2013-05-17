@@ -702,7 +702,7 @@ public class frmFuncionarioCad extends javax.swing.JInternalFrame {
                 try {
                     //mandando prod para dao.Salvar.
                     //Mensagem de confirmação!
-                    if(dao.Salvar(funcionario)){
+                    if(dao.Salvar(funcionario,1)){
                         JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
                     }else{
                         JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema");

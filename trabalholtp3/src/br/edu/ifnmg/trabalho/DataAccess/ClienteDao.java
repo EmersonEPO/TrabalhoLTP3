@@ -50,7 +50,7 @@ public class ClienteDao {
     //Função para formartar data 00/00/0000 para 00000-00-00
     
    
-    public boolean Salvar(Cliente obj) throws SQLException {
+    public boolean Salvar(Cliente obj,int i) throws SQLException {
         try {
             if (obj.getId() == 0) {
                 PreparedStatement comando = bd.getConexao().prepareStatement("insert into pessoas(nome,cpf,rg,data_nasc,status) values(?,?,?,?,?)");
@@ -91,68 +91,71 @@ public class ClienteDao {
                 
                 comando.executeUpdate();
             }
-           /*
-            //Salvando Telefone
-            for (Telefone tel : obj.getTelefones()) {
-                if (tel.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into telefones(pessoa,num,status) values(?,?,?)");
-                    
-                    comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
-                    comando.setInt(2, tel.getNum());
-                    comando.setInt(3, 1);
-                    comando.executeUpdate();
-   
-                } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num=? where id=? and status=1"); 
-                    comando.setInt(1, tel.getNum());
-                    comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
-                    comando.executeUpdate();
-                }
-       
-            }
             
+            if(i==1){
            
-            //Salvando Email
-            for (Email em : obj.getEmails()) {
-                if (em.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into emails(pessoa,email,status) values(?,?,?)");
-                    
-                    comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
-                    comando.setString(2, em.getEmail_nome());
-                    comando.setInt(3, 1);
-                    comando.executeUpdate();
-   
-                } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update emails set email=? where id=? and status=1"); 
-                    comando.setString(1, em.getEmail_nome());
-                    comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
-                    comando.executeUpdate();
-                }
-       
+                    //Salvando Telefone
+                    for (Telefone tel : obj.getTelefones()) {
+                        if (tel.getId() == 0) {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("insert into telefones(pessoa,num,status) values(?,?,?)");
+
+                            comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
+                            comando.setInt(2, tel.getNum());
+                            comando.setInt(3, 1);
+                            comando.executeUpdate();
+
+                        } else {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("update telefones set num=? where id=? and status=1"); 
+                            comando.setInt(1, tel.getNum());
+                            comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
+                            comando.executeUpdate();
+                        }
+
+                    }
+
+
+                    //Salvando Email
+                    for (Email em : obj.getEmails()) {
+                        if (em.getId() == 0) {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("insert into emails(pessoa,email,status) values(?,?,?)");
+
+                            comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
+                            comando.setString(2, em.getEmail_nome());
+                            comando.setInt(3, 1);
+                            comando.executeUpdate();
+
+                        } else {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("update emails set email=? where id=? and status=1"); 
+                            comando.setString(1, em.getEmail_nome());
+                            comando.setInt(2, ChaveEstrangeira(obj.getCpf()));
+                            comando.executeUpdate();
+                        }
+
+                    }
+
+                    //Salvando Endereços
+                    for (Endereco en : obj.getEnderecos()) {
+                        if (en.getId() == 0) {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro,status) values(?,?,?,?,?)");
+
+                            comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
+                            comando.setString(2, en.getRua());
+                            comando.setInt(3, en.getNum());
+                            comando.setString(4, en.getBairro());
+                            comando.setInt(5, 1);
+                            comando.executeUpdate();
+
+                        } else {
+                            PreparedStatement comando = bd.getConexao().prepareStatement("update enderecos set rua=?,num=?,bairro=? where id=? and status=1"); 
+                            comando.setString(1, en.getRua());
+                            comando.setInt(2, en.getNum());
+                            comando.setString(3, en.getBairro());
+                            comando.setInt(4, ChaveEstrangeira(obj.getCpf()));
+                            comando.executeUpdate();
+                        }
+
+                    }
             }
-            
-            //Salvando Endereços
-            for (Endereco en : obj.getEnderecos()) {
-                if (en.getId() == 0) {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("insert into enderecos(pessoa,rua,num,bairro,status) values(?,?,?,?,?)");
-                    
-                    comando.setInt(1, ChaveEstrangeira(obj.getCpf()));
-                    comando.setString(2, en.getRua());
-                    comando.setInt(3, en.getNum());
-                    comando.setString(4, en.getBairro());
-                    comando.setInt(5, 1);
-                    comando.executeUpdate();
-   
-                } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("update enderecos set rua=?,num=?,bairro=? where id=? and status=1"); 
-                    comando.setString(1, en.getRua());
-                    comando.setInt(2, en.getNum());
-                    comando.setString(3, en.getBairro());
-                    comando.setInt(4, ChaveEstrangeira(obj.getCpf()));
-                    comando.executeUpdate();
-                }
-       
-            }*/
             
             return true;
         } catch (SQLException ex) {
@@ -254,12 +257,12 @@ public class ClienteDao {
     public List<Cliente> buscar(Cliente filtro) throws ErroValidacaoException {
         try {
             
-            String sql = "select p.id,p.nome,p.cpf,p.rg,p.data_nasc,p,p.status from pessoas p inner join clientes c on (c.pessoa = p.id) ";
+            String sql = "select p.id,p.nome,p.cpf,p.rg,p.data_nasc,p.status from pessoas p inner join clientes c on (c.pessoa = p.id) ";
             String where = "";
             
             if(filtro.getNome().length() > 0){
                 where = "p.nome like '%"+filtro.getNome()+"%' ";
-                where = where + " and p.status=1 odrer by p.id ";
+                where = where + " and p.status=1 order by p.id ";
             }   
 
             if(where.length() > 0){
@@ -267,7 +270,7 @@ public class ClienteDao {
             }
             
             if(where.length() == 0){
-                where = where + " p.status = 1 order by p.id ";
+                where = where + " p.status=1 order by p.id ";
                 sql = sql + " where " + where;
             }
             
@@ -280,11 +283,11 @@ public class ClienteDao {
                 // Inicializa um objeto de cliente vazio
                 Cliente tmp = new Cliente();
                 // Pega os valores do retorno da consulta e coloca no objeto
-                tmp.setId(resultado.getInt("id"));
-                tmp.setNome(resultado.getString("nome"));
-                tmp.setCpf(resultado.getInt("cpf"));
-                tmp.setRg(resultado.getInt("rg"));
-                tmp.setDataRetorno(resultado.getString("data_nasc"));
+                tmp.setId(resultado.getInt("p.id"));
+                tmp.setNome(resultado.getString("p.nome"));
+                tmp.setCpf(resultado.getInt("p.cpf"));
+                tmp.setRg(resultado.getInt("p.rg"));
+                tmp.setDataRetorno(resultado.getString("p.data_nasc"));
                 
      
                 // Pega o objeto e coloca na lista

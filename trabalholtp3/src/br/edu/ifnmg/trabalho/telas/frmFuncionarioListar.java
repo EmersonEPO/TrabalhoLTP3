@@ -14,6 +14,8 @@ import br.edu.ifnmg.trabalho.classes.Telefone;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -344,7 +346,23 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrarFuncionarioActionPerformed
 
     private void tblListagemFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListagemFuncionarioMouseClicked
-       
+        Object valor = tblListagemFuncionario.getValueAt( tblListagemFuncionario.getSelectedRow(), 0);
+        Funcionario funci = null;
+        try {
+            funci = dao.Abrir((int)valor);
+        } catch (ErroValidacaoException ex) {
+            System.out.printf("Erro");        }
+        frmFuncionarioEditar janela = null;
+        try {
+            janela = new frmFuncionarioEditar(funci, dao);
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(frmFuncionarioListar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(frmFuncionarioListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tblListagemFuncionarioMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

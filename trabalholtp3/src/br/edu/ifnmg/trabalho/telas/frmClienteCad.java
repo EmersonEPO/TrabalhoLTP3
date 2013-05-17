@@ -667,7 +667,7 @@ public class frmClienteCad extends javax.swing.JInternalFrame {
                 try {
                     //mandando prod para dao.Salvar.
                     //Mensagem de confirmação!
-                    if(dao.Salvar(cliente)){
+                    if(dao.Salvar(cliente,1)){
                         JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
                     }else{
                         JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema");

@@ -5,8 +5,10 @@
 package br.edu.ifnmg.trabalho.telas;
 
 import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
+import br.edu.ifnmg.trabalho.DataAccess.FuncionarioDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Funcionario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,16 +19,16 @@ import javax.swing.JOptionPane;
  *
  * @author emerson
  */
-public class frmClienteEditar extends javax.swing.JInternalFrame {
-    Cliente  cliente;
-    ClienteDao dao;
+public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
+    Funcionario  funcionario;
+    FuncionarioDao dao;
 
     /**
      * Creates new form frmClienteEditar
      */
-    public frmClienteEditar(Cliente c, ClienteDao d) throws ErroValidacaoException, ParseException {
+    public frmFuncionarioEditar(Funcionario c, FuncionarioDao d) throws ErroValidacaoException, ParseException {
         initComponents();
-        this.cliente = c;
+        this.funcionario = c;
         this.dao = d;
         
         carregaCampos();
@@ -42,24 +44,28 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     }
     
     private void carregaCampos() throws ErroValidacaoException, ParseException {
-        txtEditarClienteId.setText(Integer.toString(cliente.getId()));
-        txtEditarClienteNome.setText(cliente.getNome());
-        txtEditarClienteCpf.setText(Integer.toString(cliente.getCpf()));
-        txtEditarClienteRg.setText(Integer.toString(cliente.getRg()));
-        txtEditarClienteNascimento.setText(cliente.getDataRetorno());
+        txtEditarFuncionarioId.setText(Integer.toString(funcionario.getId()));
+        txtEditarFuncionarioNome.setText(funcionario.getNome());
+        txtEditarFuncionarioCpf.setText(Integer.toString(funcionario.getCpf()));
+        txtEditarFuncionarioRg.setText(Integer.toString(funcionario.getRg()));
+        txtEditarFuncionarioNascimento.setText(funcionario.getDataRetorno());
+        txtEditarFuncionarioUsuario.setText(funcionario.getUsuario());
+        txtEditarFuncionarioSenha.setText(funcionario.getSenha());
 
     }
 
     private void carregaObjeto() {
         try{
-        cliente.setId(Integer.parseInt(txtEditarClienteId.getText()));
-        cliente.setNome(txtEditarClienteNome.getText());
-        cliente.setCpf(Integer.parseInt(txtEditarClienteCpf.getText()));
-        cliente.setRg(Integer.parseInt(txtEditarClienteRg.getText()));
-        cliente.setData(DataF(txtEditarClienteNascimento.getText()));
+        funcionario.setId(Integer.parseInt(txtEditarFuncionarioId.getText()));
+        funcionario.setNome(txtEditarFuncionarioNome.getText());
+        funcionario.setCpf(Integer.parseInt(txtEditarFuncionarioCpf.getText()));
+        funcionario.setRg(Integer.parseInt(txtEditarFuncionarioRg.getText()));
+        funcionario.setData(DataF(txtEditarFuncionarioNascimento.getText()));
+        funcionario.setUsuario(txtEditarFuncionarioUsuario.getText());
+        funcionario.setSenha(txtEditarFuncionarioSenha.getText());
       
         }catch (Exception ex){
-            System.out.print("Erro");
+            System.out.print("Erro ao transefir os dados para o objeto");
         }
     }
 
@@ -79,15 +85,19 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtEditarClienteId = new javax.swing.JTextField();
-        txtEditarClienteNome = new javax.swing.JTextField();
-        txtEditarClienteCpf = new javax.swing.JTextField();
-        txtEditarClienteRg = new javax.swing.JTextField();
-        txtEditarClienteNascimento = new javax.swing.JTextField();
-        btnEditarClienteApagar = new javax.swing.JButton();
-        btnEditarClienteSalvar = new javax.swing.JButton();
+        txtEditarFuncionarioId = new javax.swing.JTextField();
+        txtEditarFuncionarioNome = new javax.swing.JTextField();
+        txtEditarFuncionarioCpf = new javax.swing.JTextField();
+        txtEditarFuncionarioRg = new javax.swing.JTextField();
+        txtEditarFuncionarioNascimento = new javax.swing.JTextField();
+        btnEditarFuncionarioApagar = new javax.swing.JButton();
+        btnEditarFuncionarioSalvar = new javax.swing.JButton();
         jpTituloPagamentoEditar = new javax.swing.JPanel();
         lblTituloPagamentoEditar = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtEditarFuncionarioUsuario = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtEditarFuncionarioSenha = new javax.swing.JPasswordField();
 
         setClosable(true);
 
@@ -101,42 +111,42 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Nascimento");
 
-        txtEditarClienteId.setEnabled(false);
+        txtEditarFuncionarioId.setEnabled(false);
 
         try{
             javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##-##-####");
-            txtEditarClienteNascimento = new javax.swing.JFormattedTextField(data);
+            txtEditarFuncionarioNascimento = new javax.swing.JFormattedTextField(data);
         }
         catch (Exception e){
         }
 
-        btnEditarClienteApagar.setText("Apagar");
-        btnEditarClienteApagar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarFuncionarioApagar.setText("Apagar");
+        btnEditarFuncionarioApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarClienteApagarActionPerformed(evt);
+                btnEditarFuncionarioApagarActionPerformed(evt);
             }
         });
 
-        btnEditarClienteSalvar.setText("Salvar");
-        btnEditarClienteSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarFuncionarioSalvar.setText("Salvar");
+        btnEditarFuncionarioSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarClienteSalvarActionPerformed(evt);
+                btnEditarFuncionarioSalvarActionPerformed(evt);
             }
         });
 
         jpTituloPagamentoEditar.setBackground(new java.awt.Color(0, 102, 153));
 
         lblTituloPagamentoEditar.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
-        lblTituloPagamentoEditar.setText("Editar Cliente");
+        lblTituloPagamentoEditar.setText("Editar Funcionario");
 
         javax.swing.GroupLayout jpTituloPagamentoEditarLayout = new javax.swing.GroupLayout(jpTituloPagamentoEditar);
         jpTituloPagamentoEditar.setLayout(jpTituloPagamentoEditarLayout);
         jpTituloPagamentoEditarLayout.setHorizontalGroup(
             jpTituloPagamentoEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloPagamentoEditarLayout.createSequentialGroup()
-                .addContainerGap(219, Short.MAX_VALUE)
+            .addGroup(jpTituloPagamentoEditarLayout.createSequentialGroup()
+                .addGap(181, 181, 181)
                 .addComponent(lblTituloPagamentoEditar)
-                .addGap(210, 210, 210))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jpTituloPagamentoEditarLayout.setVerticalGroup(
             jpTituloPagamentoEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,13 +156,20 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel6.setText("Usuario");
+
+        jLabel7.setText("Senha");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jpTituloPagamentoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
@@ -160,17 +177,18 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtEditarClienteId, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(txtEditarClienteNome)
-                    .addComponent(txtEditarClienteCpf)
-                    .addComponent(txtEditarClienteRg)
-                    .addComponent(txtEditarClienteNascimento))
+                    .addComponent(txtEditarFuncionarioId, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(txtEditarFuncionarioNome)
+                    .addComponent(txtEditarFuncionarioCpf)
+                    .addComponent(txtEditarFuncionarioRg)
+                    .addComponent(txtEditarFuncionarioNascimento)
+                    .addComponent(txtEditarFuncionarioUsuario)
+                    .addComponent(txtEditarFuncionarioSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEditarClienteApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditarClienteSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEditarFuncionarioApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarFuncionarioSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
-            .addComponent(jpTituloPagamentoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,46 +197,54 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtEditarClienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEditarFuncionarioId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtEditarClienteNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEditarFuncionarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtEditarClienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEditarFuncionarioCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(txtEditarClienteRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEditarFuncionarioRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(txtEditarClienteNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEditarFuncionarioNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEditarClienteSalvar)
+                        .addComponent(btnEditarFuncionarioSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditarClienteApagar)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                        .addComponent(btnEditarFuncionarioApagar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEditarFuncionarioUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtEditarFuncionarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarClienteSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteSalvarActionPerformed
+    private void btnEditarFuncionarioSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFuncionarioSalvarActionPerformed
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
 
                 carregaObjeto();
                 
-                if (dao.Salvar(cliente,0)) {
+                if (dao.Salvar(funcionario,0)) {
                     JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
                     
                     //Chamar NOVAMENTE a janela de listagem de Produtos
-                    frmClienteListar janela = new frmClienteListar();
+                    frmFuncionarioListar janela = new frmFuncionarioListar();
                     this.getParent().add(janela);
                     janela.setVisible(true);
                     this.setVisible(false);
@@ -233,19 +259,19 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema!");
         }
-    }//GEN-LAST:event_btnEditarClienteSalvarActionPerformed
+    }//GEN-LAST:event_btnEditarFuncionarioSalvarActionPerformed
 
-    private void btnEditarClienteApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteApagarActionPerformed
+    private void btnEditarFuncionarioApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFuncionarioApagarActionPerformed
        try {
-            if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente apagar cliente?") == 0) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente apagar funcionario?") == 0) {
 
                 carregaObjeto();
                 
-                if (dao.Apagar(cliente)) {
-                    JOptionPane.showMessageDialog(rootPane, "Cliente deletado com sucesso!");
+                if (dao.Apagar(funcionario)) {
+                    JOptionPane.showMessageDialog(rootPane, "Funcionario deletado com sucesso!");
                     
                     //Chamar NOVAMENTE a janela de listagem de Produtos
-                    frmClienteListar janela = new frmClienteListar();
+                    frmFuncionarioListar janela = new frmFuncionarioListar();
                     this.getParent().add(janela);
                     janela.setVisible(true);
                     this.setVisible(false);
@@ -260,32 +286,26 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao apagar! Consulte o administrador do sistema!");
         }
-    }//GEN-LAST:event_btnEditarClienteApagarActionPerformed
+    }//GEN-LAST:event_btnEditarFuncionarioApagarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditarClienteApagar;
-    private javax.swing.JButton btnEditarClienteSalvar;
+    private javax.swing.JButton btnEditarFuncionarioApagar;
+    private javax.swing.JButton btnEditarFuncionarioSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jpTituloPagamentoEditar;
-    private javax.swing.JPanel jpTituloPagamentoEditar1;
-    private javax.swing.JPanel jpTituloPagamentoEditar2;
-    private javax.swing.JPanel jpTituloPagamentoEditar3;
-    private javax.swing.JPanel jpTituloPagamentoEditar4;
-    private javax.swing.JPanel jpTituloPagamentoEditar5;
     private javax.swing.JLabel lblTituloPagamentoEditar;
-    private javax.swing.JLabel lblTituloPagamentoEditar1;
-    private javax.swing.JLabel lblTituloPagamentoEditar2;
-    private javax.swing.JLabel lblTituloPagamentoEditar3;
-    private javax.swing.JLabel lblTituloPagamentoEditar4;
-    private javax.swing.JLabel lblTituloPagamentoEditar5;
-    private javax.swing.JTextField txtEditarClienteCpf;
-    private javax.swing.JTextField txtEditarClienteId;
-    private javax.swing.JTextField txtEditarClienteNascimento;
-    private javax.swing.JTextField txtEditarClienteNome;
-    private javax.swing.JTextField txtEditarClienteRg;
+    private javax.swing.JTextField txtEditarFuncionarioCpf;
+    private javax.swing.JTextField txtEditarFuncionarioId;
+    private javax.swing.JTextField txtEditarFuncionarioNascimento;
+    private javax.swing.JTextField txtEditarFuncionarioNome;
+    private javax.swing.JTextField txtEditarFuncionarioRg;
+    private javax.swing.JPasswordField txtEditarFuncionarioSenha;
+    private javax.swing.JTextField txtEditarFuncionarioUsuario;
     // End of variables declaration//GEN-END:variables
 }
