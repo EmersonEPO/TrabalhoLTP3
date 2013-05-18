@@ -205,7 +205,9 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmProdutoListarActionPerformed
 
     private void jmListarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarVendasActionPerformed
-        // TODO add your handling code here:
+        frmVendaListar janela = new frmVendaListar();
+        add(janela);
+        janela.setVisible(true);
     }//GEN-LAST:event_jmListarVendasActionPerformed
 
     private void jmPagamentoListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPagamentoListarActionPerformed

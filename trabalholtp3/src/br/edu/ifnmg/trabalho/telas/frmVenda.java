@@ -129,6 +129,10 @@ public class frmVenda extends javax.swing.JInternalFrame {
         txtQtdVend = new javax.swing.JTextField();
         btnFinalizarVend = new javax.swing.JButton();
         btnCancelarVend = new javax.swing.JButton();
+        jpTituloPagamentoEditar = new javax.swing.JPanel();
+        lblTituloPagamentoEditar = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jbcClienteVend.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jbcClienteVend.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +152,10 @@ public class frmVenda extends javax.swing.JInternalFrame {
         lblValorPVenda.setText("Valor Partcial");
 
         lblValorFVend.setText("Valor Final");
+
+        txtValorFinal.setEnabled(false);
+
+        txtValorParcial.setEnabled(false);
 
         jcbFuncionarioVend.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -178,7 +186,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     .addComponent(jcbFuncionarioVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcbPagamentoVend, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtValorParcialVend))
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         jPGeralLayout.setVerticalGroup(
             jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +216,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                         .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblValorFVend))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jtbVenda.addTab("Geral", jPGeral);
@@ -241,6 +249,8 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         lblValorParcialComp.setText("Valor Parcial da Compra:");
 
+        txtValorParcialCompra.setEnabled(false);
+
         javax.swing.GroupLayout jPItemLayout = new javax.swing.GroupLayout(jPItem);
         jPItem.setLayout(jPItemLayout);
         jPItemLayout.setHorizontalGroup(
@@ -248,11 +258,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
             .addGroup(jPItemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addGroup(jPItemLayout.createSequentialGroup()
                         .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPItemLayout.createSequentialGroup()
-                                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPItemLayout.createSequentialGroup()
                                         .addComponent(lblItemVend)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -260,7 +270,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                                     .addGroup(jPItemLayout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtQtdVend)))
+                                        .addComponent(txtQtdVend, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAddItem))
                             .addGroup(jPItemLayout.createSequentialGroup()
@@ -282,13 +292,13 @@ public class frmVenda extends javax.swing.JInternalFrame {
                 .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtQtdVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtValorParcialCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorParcialCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValorParcialComp))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jtbVenda.addTab("Item", jPItem);
@@ -307,28 +317,51 @@ public class frmVenda extends javax.swing.JInternalFrame {
             }
         });
 
+        jpTituloPagamentoEditar.setBackground(new java.awt.Color(0, 102, 153));
+
+        lblTituloPagamentoEditar.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
+        lblTituloPagamentoEditar.setText("Editar Venda");
+
+        javax.swing.GroupLayout jpTituloPagamentoEditarLayout = new javax.swing.GroupLayout(jpTituloPagamentoEditar);
+        jpTituloPagamentoEditar.setLayout(jpTituloPagamentoEditarLayout);
+        jpTituloPagamentoEditarLayout.setHorizontalGroup(
+            jpTituloPagamentoEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTituloPagamentoEditarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTituloPagamentoEditar)
+                .addGap(245, 245, 245))
+        );
+        jpTituloPagamentoEditarLayout.setVerticalGroup(
+            jpTituloPagamentoEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTituloPagamentoEditarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloPagamentoEditar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(btnFinalizarVend)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelarVend))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(210, 210, 210)
+                .addComponent(btnFinalizarVend)
+                .addGap(26, 26, 26)
+                .addComponent(btnCancelarVend)
+                .addContainerGap())
+            .addComponent(jpTituloPagamentoEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jtbVenda)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpTituloPagamentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jtbVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVend)
                     .addComponent(btnFinalizarVend))
@@ -399,6 +432,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jcbFuncionarioVend;
     private javax.swing.JComboBox jcbItemVend;
     private javax.swing.JComboBox jcbPagamentoVend;
+    private javax.swing.JPanel jpTituloPagamentoEditar;
     private javax.swing.JTable jtItensVenda;
     private javax.swing.JTabbedPane jtbVenda;
     private javax.swing.JLabel lblClienteVend;
@@ -406,6 +440,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFuncionarioVend;
     private javax.swing.JLabel lblItemVend;
     private javax.swing.JLabel lblPagamentoVend;
+    private javax.swing.JLabel lblTituloPagamentoEditar;
     private javax.swing.JLabel lblValorFVend;
     private javax.swing.JLabel lblValorPVenda;
     private javax.swing.JLabel lblValorParcialComp;

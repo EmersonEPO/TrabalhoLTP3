@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author emerson
  */
-public class Venda {
+public class Venda{
     private int Id;
     private Date Data_venda;
     private double Total;

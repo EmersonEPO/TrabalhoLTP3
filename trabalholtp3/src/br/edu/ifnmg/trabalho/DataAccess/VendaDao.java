@@ -31,10 +31,14 @@ public class VendaDao {
     public boolean Salvar(Venda obj) {
         try {
             if (obj.getId() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into vendas(valorTotal, data) values(?,?)");
-                comando.setDouble(1, obj.getTotal());
-                java.sql.Date dt = new java.sql.Date(obj.getData_venda().getTime());
-                comando.setDate(2, dt);
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into vendas(funcionario,cliente,pagamento,data_venda,total,status) values(?,?,?,?,?,?)");
+                comando.setInt(1, obj.getAtendente().getId());
+                comando.setInt(2,obj.getConsumidor().getId());
+                comando.setInt(3, obj.getTipo_paga().getId());
+                java.sql.Date data = new java.sql.Date(obj.getData_venda().getTime());
+                comando.setDate(4, data);
+                comando.setDouble(5, obj.getTotal_final());
+                comando.setInt(6, 1);
                 comando.executeUpdate();
             } else {
                 PreparedStatement comando = bd.getConexao().prepareStatement("update vendas set valorTotal = ?,data = ? where id = ?");
@@ -48,7 +52,7 @@ public class VendaDao {
             for (Item_venda iv : obj.getItens()) {
                 if (iv.isAtivo()) {
                     if (iv.getId() == 0) {
-                        PreparedStatement comando = bd.getConexao().prepareStatement("insert into itensvenda(venda, produto, quantidade) values(?,?,?)");
+                        PreparedStatement comando = bd.getConexao().prepareStatement("insert into item_venda(venda,produto,valor_item,qtd) values(?,?,?,?)");
                         comando.setInt(1, obj.getId());
                         comando.setInt(2, iv.getProduto().getId());
                         comando.setInt(3, iv.getQtd());
