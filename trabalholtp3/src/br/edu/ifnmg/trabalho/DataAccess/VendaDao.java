@@ -4,8 +4,11 @@
  */
 package br.edu.ifnmg.trabalho.DataAccess;
 
+import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
+import br.edu.ifnmg.trabalho.classes.Funcionario;
 import br.edu.ifnmg.trabalho.classes.Item_venda;
+import br.edu.ifnmg.trabalho.classes.Pagamento;
 import br.edu.ifnmg.trabalho.classes.Venda;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -50,25 +53,20 @@ public class VendaDao {
             }
 
             for (Item_venda iv : obj.getItens()) {
-                if (iv.isAtivo()) {
                     if (iv.getId() == 0) {
                         PreparedStatement comando = bd.getConexao().prepareStatement("insert into item_venda(venda,produto,valor_item,qtd) values(?,?,?,?)");
                         comando.setInt(1, obj.getId());
                         comando.setInt(2, iv.getProduto().getId());
-                        comando.setInt(3, iv.getQtd());
+                        comando.setDouble(3, iv.getV_produto());
+                        comando.setInt(4, iv.getQtd());
                         comando.executeUpdate();
                     } else {
-                        PreparedStatement comando = bd.getConexao().prepareStatement("update itensvenda set produto = ?, quantidade = ? where id = ?");
+                        PreparedStatement comando = bd.getConexao().prepareStatement("update item_venda set produto=?, qtd=? where id=?");
                         comando.setInt(1, iv.getProduto().getId());
                         comando.setInt(2, iv.getQtd());
                         comando.setInt(3, obj.getId());
                         comando.executeUpdate();
                     }
-                } else {
-                    PreparedStatement comando = bd.getConexao().prepareStatement("delete from itensvenda where id = ?");
-                    comando.setInt(1, obj.getId());
-                    comando.executeUpdate();
-                }
             }
 
             return true;
@@ -82,7 +80,7 @@ public class VendaDao {
         try {
             Venda venda = new Venda();
 
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from vendas where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from vendas where id = ? and status=1");
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 
@@ -104,11 +102,11 @@ public class VendaDao {
 
     public boolean Apagar(Venda obj) {
         try {
-            PreparedStatement comando2 = bd.getConexao().prepareStatement("delete from itensvenda where venda = ?");
+            PreparedStatement comando2 = bd.getConexao().prepareStatement("update item_venda set where venda=?");
             comando2.setInt(1, obj.getId());
             comando2.executeUpdate();
             
-            PreparedStatement comando = bd.getConexao().prepareStatement("delete from vendas where id = ?");
+            PreparedStatement comando = bd.getConexao().prepareStatement("update vendas set status=0 where id=?");
             comando.setInt(1, obj.getId());
             comando.executeUpdate();
             return true;
@@ -120,17 +118,21 @@ public class VendaDao {
 
     public List<Venda> listarTodos() throws ErroValidacaoException {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from vendas ");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from vendas where status=1 ");
             ResultSet resultado = comando.executeQuery();
            
             List<Venda> vendas = new LinkedList<>();
             while (resultado.next()) {
                 
                 Venda tmp = new Venda();
+                Funcionario f = new Funcionario();
+                Cliente c = new Cliente();
+                Pagamento pg = new Pagamento();
+                
                 
                 tmp.setId(resultado.getInt("id"));
                 tmp.setData_venda(resultado.getDate("data"));
-                tmp.setTotal(resultado.getDouble("valorTotal"));
+                tmp.setTotal(resultado.getDouble("valor"));
                
                 
                 carregaItens(tmp.getId(), tmp);

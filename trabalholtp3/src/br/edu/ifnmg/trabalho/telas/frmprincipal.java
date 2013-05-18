@@ -205,7 +205,12 @@ public class frmprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmProdutoListarActionPerformed
 
     private void jmListarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarVendasActionPerformed
-        frmVendaListar janela = new frmVendaListar();
+        frmVendaListar janela = null;
+        try {
+            janela = new frmVendaListar();
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(frmprincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmListarVendasActionPerformed

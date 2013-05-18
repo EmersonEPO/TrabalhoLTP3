@@ -8,6 +8,7 @@ import br.edu.ifnmg.trabalho.DataAccess.ClienteDao;
 import br.edu.ifnmg.trabalho.DataAccess.FuncionarioDao;
 import br.edu.ifnmg.trabalho.DataAccess.PagamentoDao;
 import br.edu.ifnmg.trabalho.DataAccess.ProdutoDao;
+import br.edu.ifnmg.trabalho.DataAccess.VendaDao;
 import br.edu.ifnmg.trabalho.classes.Cliente;
 import br.edu.ifnmg.trabalho.classes.ErroValidacaoException;
 import br.edu.ifnmg.trabalho.classes.Funcionario;
@@ -33,6 +34,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         ProdutoDao pdao;
         PagamentoDao pgdao;
         ClienteDao cdao;
+        VendaDao dao;
         FuncionarioDao fdao;
         List<Produto> produtos;
         List<Cliente> clientes;
@@ -44,6 +46,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
     public frmVenda() throws ErroValidacaoException, ParseException {
         initComponents();
         
+        dao = new VendaDao();
         pgdao = new PagamentoDao();
         pdao = new ProdutoDao();
         cdao = new ClienteDao();
@@ -70,11 +73,12 @@ public class frmVenda extends javax.swing.JInternalFrame {
         List<Produto> produtos = pdao.listarTodos();
         jcbItemVend.removeAllItems();
         for(Produto p: produtos){
-            jcbItemVend.addItem(p.getNome());
+            jcbItemVend.addItem(p);
+         
         }
         
     }
-    private void configuraCamposFormulario() {
+    private void configuraCampo() {
         txtValorParcial.setText(Double.toString(venda.getTotal()));
         txtValorParcialCompra.setText(Double.toString(venda.getTotal()));
 
@@ -93,7 +97,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         jtItensVenda.setModel(model);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,6 +162,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
         txtValorParcial.setEnabled(false);
 
         jcbFuncionarioVend.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFuncionarioVend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbFuncionarioVendActionPerformed(evt);
+            }
+        });
 
         jcbPagamentoVend.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -388,7 +397,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");
 
-            configuraCamposFormulario();
+            configuraCampo();
         }
         else {
             JOptionPane.showMessageDialog(rootPane, "Ação cancelada pelo usuário!");
@@ -406,19 +415,39 @@ public class frmVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarVendActionPerformed
 
     private void btnFinalizarVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendActionPerformed
-         if(JOptionPane.showConfirmDialog(rootPane,  "Deseja Salvar?") == 0){   
-      
-            JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso");
-            
-        } else {               
-            JOptionPane.showMessageDialog(rootPane,"Operação Não cancelada!");
-            
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+
+                
+                Funcionario f =  (Funcionario) jcbFuncionarioVend.getSelectedItem();
+                Cliente c =  (Cliente) jbcClienteVend.getSelectedItem();  
+                Pagamento pgt = (Pagamento) jcbPagamentoVend.getSelectedItem();
+                //=============
+                venda.setAtendente(f);
+                venda.setConsumidor(c);
+                venda.setTipo_paga(pgt);
+                
+                if (dao.Salvar(venda)) {
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Falha ao salvar! Consulte o administrador do sistema!");
+                }
+
+            } else {                
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema!");
         }
     }//GEN-LAST:event_btnFinalizarVendActionPerformed
 
     private void jbcClienteVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcClienteVendActionPerformed
        
     }//GEN-LAST:event_jbcClienteVendActionPerformed
+
+    private void jcbFuncionarioVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbFuncionarioVendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbFuncionarioVendActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
